@@ -1,4 +1,4 @@
-import React, { Component,Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Spinner from '../app/shared/Spinner';
@@ -24,8 +24,8 @@ const Login = lazy(() => import('./user-pages/Login'));
 const Register1 = lazy(() => import('./user-pages/Register'));
 
 
-class AppRoutes extends Component {
-  render () {
+const AppRoutes = () => {
+
     return (
       <Suspense fallback={<Spinner/>}>
         <Switch>
@@ -55,7 +55,6 @@ class AppRoutes extends Component {
         </Switch>
       </Suspense>
     );
-  }
 }
 
 export default AppRoutes;

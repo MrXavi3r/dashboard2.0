@@ -10,10 +10,8 @@ import { withTranslation } from "react-i18next";
 const App = (props) => {
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
   const prevLocation = useRef(props.location).current;
-  console.log(prevLocation);
 
   const onRouteChanged = useCallback(() => {
-    console.log("ROUTE CHANGED");
 
     window.scrollTo(0, 0);
     const fullPageLayoutRoutes = [
