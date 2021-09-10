@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* add global styles to this file, and also import other style files */
 
 /* === Plugin styles === */
 
@@ -68,3 +68,16 @@
 @import "../assets/styles/sidebar";
 @import "../assets/styles/footer";
 @import "../assets/styles/layout";
+
+
+// an override of templated plugin styles for table hovers
+.table-hover {
+    tbody {
+        tr {
+            &:hover {
+                color: blue;
+                background-color: rgb(159, 166, 168);
+            }
+        }
+    }
+}

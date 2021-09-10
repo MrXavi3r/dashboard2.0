@@ -15,21 +15,22 @@ export const NewsWidget = () => {
       const news = await response.json();
       setNewsArticles(news.articles);
       setNewsWidgetStatusColor('success')
+      console.log(news.articles)
     }
     // fetchNewsData();
   }, []);
 
   return (
-    <Col md={6} xl={6} className="grid-margin">
+    <Col md={6} xl={8} className="grid-margin">
       <Card className="bg-light text-dark">
         <Card.Header className="bg-danger d-flex align-items-center justify-content-between">
-          <Card.Title as="h4" className="mb-0 p-0 text-white">
-            News
+          <Card.Title as="h4" className="mb-0 p-0 text-white text-center">
+          <i className="mdi mdi-newspaper pr-2 text-dark mdi-24px"></i> News
           </Card.Title>
-          <i className={`fa fa-circle text-${newsWidgetStatusColor}`} />
+          <i className={`fa fa-circle text-${newsWidgetStatusColor} fa-lg`} />
         </Card.Header>
         <Card.Body className="p-0">
-          {newsArticles && newsArticles.length > 0 ? (
+          {newsArticles && newsArticles.length ? (
             newsArticles.map((article, index) => {
               return (
                 <a
@@ -50,7 +51,7 @@ export const NewsWidget = () => {
                     <div className="col-8">
                       <h5>{article.title}</h5>
                       <p className="mb-0 text-dark">
-                        {article.description.substring(0, 100)}...
+                        {article.description && article.description.substring(0, 100)}...
                       </p>
                     </div>
                   </div>
@@ -58,7 +59,7 @@ export const NewsWidget = () => {
               );
             })
           ) : (
-            <h4 className="text-center my-4 text-danger">news not available</h4>
+            <h4 className="text-center my-4 text-danger">news feed offline</h4>
           )}
         </Card.Body>
       </Card>

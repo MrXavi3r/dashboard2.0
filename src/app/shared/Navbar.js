@@ -258,14 +258,14 @@ const Navbar = () => {
             >
               <div className="navbar-profile">
                 <img
-                  className="img-xs rounded-circle"
-                  src={require("../../assets/images/faces/face15.jpg")}
+                  className="img-xs rounded-circle bg-danger"
+                  src={require("../../assets/images/xavier.svg")}
                   alt="profile"
                 />
                 <p className="mb-0 d-none d-sm-block navbar-profile-name">
                   Xavier Ritch
                 </p>
-                <i className="mdi mdi-menu-down d-none d-sm-block text-dark"></i>
+                <i className="mdi mdi-menu-down d-none d-sm-block text-white"></i>
               </div>
             </Dropdown.Toggle>
 

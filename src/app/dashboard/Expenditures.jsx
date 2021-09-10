@@ -6,7 +6,7 @@ export const Expenditures = () => {
       <Card className="bg-light text-dark border-gray">
         <Card.Body>
           <div className="d-flex align-items-center justify-content-between">
-            <h6 className="mb-4">Expenditures (month to date)</h6>
+            <h6 className="mb-4">Expenditures <small>(month to date)</small></h6>
             <div className="icon icon-box-success ">
               <span className="mdi mdi-arrow-top-right icon-item"></span>
             </div>

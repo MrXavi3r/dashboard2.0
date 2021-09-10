@@ -6,7 +6,6 @@ class Sidebar extends Component {
   state = {};
 
   toggleMenuState(menuState) {
-    console.log(menuState)
     if (this.state[menuState]) {
       this.setState({ [menuState]: false });
     } else if (Object.keys(this.state).length === 0) {
@@ -91,8 +90,8 @@ class Sidebar extends Component {
               <div className="profile-pic">
                 <div className="count-indicator">
                   <img
-                    className="img-xs rounded-circle "
-                    src={require("../../assets/images/faces/face15.jpg")}
+                    className="img-xs rounded-circle bg-danger"
+                    src={require("../../assets/images/xavier.svg")}
                     alt="profile"
                   />
                   <span className="count bg-success"></span>

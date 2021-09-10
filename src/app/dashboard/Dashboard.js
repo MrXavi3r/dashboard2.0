@@ -1,5 +1,4 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
 import Slider from "react-slick";
 import TodoListComponent from "../apps/TodoListComponent";
 import { Balance } from "./Balance";
@@ -8,44 +7,9 @@ import { Expenditures } from "./Expenditures";
 import { Transactions } from "./Transactions";
 import { MarketWatchWidget } from "../apps/MarketWatchWidget";
 import { NewsWidget } from "../apps/NewsWidget";
-import { VectorMap } from "react-jvectormap";
+import {PieWidget} from './PieWidget' 
 
-const mapData = {
-  BZ: 75.0,
-  US: 56.25,
-  AU: 15.45,
-  GB: 25.0,
-  RO: 10.25,
-  GE: 33.25,
-};
 export const Dashboard = ()=> {
-  let transactionHistoryData = {
-    labels: ["Paypal", "Stripe", "Cash"],
-    datasets: [
-      {
-        data: [55, 25, 20, 100, 670, 54],
-        backgroundColor: ["#111111", "#00d25b", "#ffab00"],
-      },
-    ],
-  };
-
-  let transactionHistoryOptions = {
-    responsive: true,
-    maintainAspectRatio: true,
-    segmentShowStroke: false,
-    cutoutPercentage: 70,
-    elements: {
-      arc: {
-        borderWidth: 0,
-      },
-    },
-    legend: {
-      display: true,
-    },
-    tooltips: {
-      enabled: true,
-    },
-  };
 
   let sliderSettings = {
     infinite: true,
@@ -63,45 +27,7 @@ export const Dashboard = ()=> {
           <Expenditures />
         </div>
         <div className="row">
-          <div className="col-md-4 grid-margin stretch-card">
-            <div className="card bg-light text dark border-gray">
-              <div className="card-body">
-                <h4 className="card-title text-dark">Transaction History</h4>
-                <div className="aligner-wrapper">
-                  <Doughnut
-                    data={transactionHistoryData}
-                    options={transactionHistoryOptions}
-                  />
-                  <div className="absolute center-content">
-                    <h5 className="font-weight-normal text-dark text-center mb-2 text-white">
-                      1200
-                    </h5>
-                    <p className="text-small text-dark text-center mb-0">
-                      Total
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-primary d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-                  <div className="text-md-center text-xl-left text-dark">
-                    <h6 className="mb-1">Transfer to Paypal</h6>
-                    <p className="text-dark mb-0">07 Jan 2019, 09:12AM</p>
-                  </div>
-                  <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                    <h6 className="font-weight-bold mb-0">$236</h6>
-                  </div>
-                </div>
-                <div className="bg-primary d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-                  <div className="text-md-center text-xl-left text-dark">
-                    <h6 className="mb-1">Tranfer to Stripe</h6>
-                    <p className="text-dark mb-0">07 Jan 2019, 09:12AM</p>
-                  </div>
-                  <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                    <h6 className="font-weight-bold mb-0">$593</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <PieWidget />
           <Transactions />
         </div>
         <div className="row ">
@@ -204,7 +130,7 @@ export const Dashboard = ()=> {
           <div className="col-md-6 col-xl-4 grid-margin stretch-card">
             <div className="card bg-light text-dark">
               <div className="card-body">
-                <h4 className="card-title text-dark">Portfolio Slide</h4>
+                <h4 className="card-title text-dark">Portfolio</h4>
                 <Slider className="portfolio-slider" {...sliderSettings}>
                   <div className="item">
                     <img
@@ -271,8 +197,6 @@ export const Dashboard = ()=> {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
         </div>
       </div>
     );
