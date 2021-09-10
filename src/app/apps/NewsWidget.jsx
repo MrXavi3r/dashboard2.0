@@ -14,10 +14,9 @@ export const NewsWidget = () => {
       const response = await fetch(`${newsUrl}&apiKey=${newsApiKey}`);
       const news = await response.json();
       setNewsArticles(news.articles);
-      setNewsWidgetStatusColor('success')
-      console.log(news.articles)
+      setNewsWidgetStatusColor("success");
     }
-    // fetchNewsData();
+    fetchNewsData();
   }, []);
 
   return (
@@ -25,7 +24,7 @@ export const NewsWidget = () => {
       <Card className="bg-light text-dark">
         <Card.Header className="bg-danger d-flex align-items-center justify-content-between">
           <Card.Title as="h4" className="mb-0 p-0 text-white text-center">
-          <i className="mdi mdi-newspaper pr-2 text-dark mdi-24px"></i> News
+            <i className="mdi mdi-newspaper pr-2 text-dark mdi-24px"></i> News
           </Card.Title>
           <i className={`fa fa-circle text-${newsWidgetStatusColor} fa-lg`} />
         </Card.Header>
@@ -51,15 +50,23 @@ export const NewsWidget = () => {
                     <div className="col-8">
                       <h5>{article.title}</h5>
                       <p className="mb-0 text-dark">
-                        {article.description && article.description.substring(0, 100)}...
+                        {article.description &&
+                          article.description.substring(0, 120)}
+                        ...
                       </p>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <span>{article.source && article.source.name}</span>
+                        <span>{article.author ? article.author : "N/A"}</span>
+                      </div>
                     </div>
                   </div>
                 </a>
               );
             })
           ) : (
-            <h4 className="text-center my-4 text-danger">news feed offline</h4>
+            <h4 className="text-center my-4 text-danger text-uppercase">
+              news feed offline
+            </h4>
           )}
         </Card.Body>
       </Card>

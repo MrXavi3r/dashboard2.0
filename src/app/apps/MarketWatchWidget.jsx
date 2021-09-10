@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Card } from "react-bootstrap";
-import axios from "axios";
 const marketsApiKey = process.env.REACT_APP_MARKETS_KEY;
 let url = `https://api.twelvedata.com/time_series?`;
 let params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
@@ -19,7 +18,7 @@ let tickers = [
     values: null,
   },
   {
-    symbol: "AAPL",
+    symbol: "AMZN",
     values: null,
   },
   {
@@ -29,58 +28,57 @@ let tickers = [
 ];
 export const MarketWatchWidget = () => {
   const [widgetStatusColor, setWidgetStatusColor] = useState("gray");
-  const [marketData, setMarketData] = useState(tickers);
+  const [marketData, setMarketData] = useState([]);
 
-  async function fetchMarketData(ticker) {
-    try {
-      let data = await axios.get(
-        url + "symbol=" + ticker + params + marketsApiKey
-      );
-      return data.data.values;
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function init() {
+      let tickerData = [];
+      for (let i = 0; i < tickers.length; i++) {
+        let response = await fetch(
+          url + "symbol=" + tickers[i].symbol + params + marketsApiKey
+         );
+        let data = await response.json()
+        console.log(data)
+        tickerData = [...tickerData, {symbol: data.meta.symbol,  values: data.values[0]}];
+      }
+      setMarketData([...tickerData]);
+      setWidgetStatusColor("success");
     }
-  }
-
-  const getValues = () => {
-    marketData.forEach((ticker) => {
-      let data = fetchMarketData(ticker.symbol);
-      setMarketData(...marketData, (ticker.values = data));
-    });
-    setWidgetStatusColor("success");
-  };
+    init();
+  }, []);
 
   return (
     <Col md={6} xl={4} className="grid-margin">
       <Card className="bg-light text-dark">
         <Card.Header className="bg-primary d-flex align-items-center justify-content-between">
           <Card.Title as="h4" className="text-white mb-0">
-            <i className="mdi mdi-chart-line pr-2 text-success mdi-24px"></i>{" "}
+            <i className="mdi mdi-chart-line pr-2 text-success mdi-24px"> </i>
             Market Watch
           </Card.Title>
-          <button
-            className="rounded-circle border border-0 bg-primary"
-            onClick={() => getValues()}
-          >
-            <i className={`fa fa-circle text-${widgetStatusColor} fa-lg`} />
-          </button>
+          <i className={`fa fa-circle text-${widgetStatusColor} fa-lg`} />
         </Card.Header>
         <Card.Body className="pb-0">
           <ul>
-            {marketData.length &&
-              marketData.map((symbol, index) => {
+            {marketData.length ?
+              marketData.map((ticker, index) => {
                 return (
                   <li
                     key={index}
                     className="d-flex align-items-center justify-content-between border border-0 border-dark"
                   >
-                    <p>{symbol.symbol}</p>
-                    <span className="">
-                      {symbol.values ? symbol.values.close : "N/A"}
+                    <p> {ticker.symbol} </p>
+                    <span
+                      className={
+                        ticker.values.previous_close > ticker.values.close
+                          ? "text-danger"
+                          : "text-success"
+                      }
+                    >
+                      {ticker.values ? ticker.values.close : "N/A"}
                     </span>
                   </li>
                 );
-              })}
+              }) : "MARKET DATA OFFLINE"}
           </ul>
         </Card.Body>
       </Card>
