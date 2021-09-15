@@ -23,57 +23,57 @@ const PieDonutChart = () => {
     setExpenses(data);
   }, []);
 
-  const categoryHandler = (category) => {
-    let categoryColor = category;
-    let catArray = expenses.filter((item) => item.category === category);
+  useEffect(() => {
+    const categoryHandler = (category) => {
+      let categoryColor = category;
+      let catArray = expenses.filter((item) => item.category === category);
 
-    switch (categoryColor) {
-      case "housing":
-        categoryColor = "#ff8a65";
-        break;
-      case "utilities":
-        categoryColor = "#f4c22b";
-        break;
-      case "food/dining":
-        categoryColor = "#04a9f5";
-        break;
-      case "clothing/apparel":
-        categoryColor = "#a389d4";
-        break;
-      case "entertainment/leisure":
-        categoryColor = "#4F5467";
-        break;
-      case "personal care":
-        categoryColor = "#d0d489";
-        break;
-      case "medical":
-        categoryColor = "#89d4ce";
-        break;
-      case "big ticket items":
-        categoryColor = "#db2c0d";
-        break;
-      case "other":
-        categoryColor = "#db9a0d";
-        break;
-      default:
-        categoryColor = "#5c5a57";
-        break;
-    }
+      switch (categoryColor) {
+        case "housing":
+          categoryColor = "#ff8a65";
+          break;
+        case "utilities":
+          categoryColor = "#f4c22b";
+          break;
+        case "food/dining":
+          categoryColor = "#04a9f5";
+          break;
+        case "clothing/apparel":
+          categoryColor = "#a389d4";
+          break;
+        case "entertainment/leisure":
+          categoryColor = "#4F5467";
+          break;
+        case "personal care":
+          categoryColor = "#d0d489";
+          break;
+        case "medical":
+          categoryColor = "#89d4ce";
+          break;
+        case "big ticket items":
+          categoryColor = "#db2c0d";
+          break;
+        case "other":
+          categoryColor = "#db9a0d";
+          break;
+        default:
+          categoryColor = "#5c5a57";
+          break;
+      }
 
-    let total = catArray.reduce((acc, { amount }) => {
-      return acc + amount;
-    }, 0);
+      let total = catArray.reduce((acc, { amount }) => {
+        return acc + amount;
+      }, 0);
 
-    let datemObject = {
-      key: category,
-      y: +total,
-      color: categoryColor,
+      let datemObject = {
+        key: category,
+        y: +total,
+        color: categoryColor,
+      };
+
+      return datemObject;
     };
 
-    return datemObject;
-  };
-
-  useEffect(() => {
     let datemObjects = [];
 
     categories.forEach((category) => {
