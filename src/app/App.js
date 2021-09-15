@@ -5,7 +5,6 @@ import AppRoutes from "./AppRoutes";
 import Navbar from "./shared/Navbar";
 import Sidebar from "./shared/Sidebar";
 import Footer from "./shared/Footer";
-import { withTranslation } from "react-i18next";
 
 const App = (props) => {
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
@@ -65,4 +64,4 @@ const App = (props) => {
   );
 };
 
-export default withTranslation()(withRouter(App));
+export default (withRouter(App));

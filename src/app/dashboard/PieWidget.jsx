@@ -6,7 +6,7 @@ export const PieWidget = () => {
     <Col md={4} xl={4} className="grid-margin">
       <Card className="mb-0 bg-light text-dark">
         <Card.Header className="bg-info">
-          <Card.Title as="h4" className="text-white mb-0 p-2 text-center">
+          <Card.Title as="h4" className="text-white mb-0 p-2">
           <i className="mdi mdi-chart-bar pr-2 text-warning mdi-24px"></i>Expense Breakdown
           </Card.Title>
         </Card.Header>

@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Card } from "react-bootstrap";
+import { transactions } from "../data";
 
 export const Balance = () => {
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const balance = transactions.reduce((acc, { amount }) => {
+      let total = acc + amount;
+      return total;
+    }, 0);
+    setTotal(balance.toLocaleString("en-us"));
+  }, []);
+
   return (
     <Col xl={4} className="grid-margin">
       <Card className="bg-light text-dark border-gray">
@@ -14,7 +25,7 @@ export const Balance = () => {
           </div>
           <div className="row d-flex align-items-center">
             <div className="col-9">
-              <h3 className="d-flex align-items-center m-b-0">$888,638.32</h3>
+              <h3 className="d-flex align-items-center m-b-0">${total}</h3>
             </div>
 
             <div className="col-3 text-right">

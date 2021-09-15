@@ -16,7 +16,7 @@ export const NewsWidget = () => {
       setNewsArticles(news.articles);
       setNewsWidgetStatusColor("success");
     }
-    fetchNewsData();
+    // fetchNewsData();
   }, []);
 
   return (
@@ -42,21 +42,21 @@ export const NewsWidget = () => {
                     <div className="d-flex align-items-center col">
                       <img
                         src={article.urlToImage}
-                        className="rounded mx-2"
+                        className="rounded mx-1"
                         alt="not available"
                         style={{ width: "inherit", height: "inherit" }}
                       />
                     </div>
-                    <div className="col-8">
+                    <div className="col-8 d-flex flex-column justify-content-between">
                       <h5>{article.title}</h5>
                       <p className="mb-0 text-dark">
                         {article.description &&
-                          article.description.substring(0, 120)}
+                          article.description.substring(0, 200)}
                         ...
                       </p>
                       <div className="d-flex justify-content-between align-items-center">
-                        <span>{article.source && article.source.name}</span>
-                        <span>{article.author ? article.author : "N/A"}</span>
+                        <span className="text-dark">{article.source && article.source.name}</span>
+                        <span className="text-dark">{article.author ? article.author : "N/A"}</span>
                       </div>
                     </div>
                   </div>

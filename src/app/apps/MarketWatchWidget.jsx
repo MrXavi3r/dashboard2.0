@@ -38,13 +38,12 @@ export const MarketWatchWidget = () => {
           url + "symbol=" + tickers[i].symbol + params + marketsApiKey
          );
         let data = await response.json()
-        console.log(data)
         tickerData = [...tickerData, {symbol: data.meta.symbol,  values: data.values[0]}];
       }
       setMarketData([...tickerData]);
       setWidgetStatusColor("success");
     }
-    init();
+    // init();
   }, []);
 
   return (
@@ -78,7 +77,7 @@ export const MarketWatchWidget = () => {
                     </span>
                   </li>
                 );
-              }) : "MARKET DATA OFFLINE"}
+              }) : <h4 className="text-danger text-center">MARKET DATA OFFLINE</h4>}
           </ul>
         </Card.Body>
       </Card>
