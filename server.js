@@ -18,7 +18,7 @@ app.use(express.json()); //built-in middleware, parses incoming requests with JS
 app.use(morgan("dev")) //for colored res status
 
 app.use(express.static("client/build")); //serves static files/
-app.get("*", (req, res) => res.sendFile("index.html", { root }));
+app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
 
 
 app.listen(PORT, console.log(`server is running on ${process.env.NODE_ENV} mode on ${PORT}`.yellow.bold))

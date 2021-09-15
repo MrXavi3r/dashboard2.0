@@ -7,7 +7,9 @@ let categories = [
   "utilities",
   "food/dining",
   "clothing/apparel",
+  "transportation",
   "entertainment/leisure",
+  "health/fitness",
   "personal care",
   "medical",
   "big ticket items",
@@ -55,6 +57,12 @@ const PieDonutChart = () => {
           break;
         case "other":
           categoryColor = "#db9a0d";
+          break;
+        case "transportation":
+          categoryColor = "#6d0ddb";
+          break;
+        case "health/fitness":
+          categoryColor = "#3adb0d";
           break;
         default:
           categoryColor = "#5c5a57";

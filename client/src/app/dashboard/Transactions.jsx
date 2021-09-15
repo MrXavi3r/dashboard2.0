@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Col, Card, Table } from "react-bootstrap";
 import { transactions } from "../data";
 
