@@ -8,9 +8,9 @@ const Navbar = () => {
     document.querySelector(".sidebar-offcanvas").classList.toggle("active");
   };
 
-  const toggleRightSidebar = () => {
-    document.querySelector(".right-sidebar").classList.toggle("open");
-  };
+  // const toggleRightSidebar = () => {
+  //   document.querySelector(".right-sidebar").classList.toggle("open");
+  // };
 
   return (
     <nav className="navbar p-0 fixed-top d-flex flex-row bg-info">

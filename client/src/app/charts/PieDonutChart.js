@@ -102,7 +102,7 @@ const PieDonutChart = () => {
   return (
     <NVD3Chart
       id="chart"
-      height={300}
+      height={400}
       type="pieChart"
       datum={datumValues}
       x="key"
