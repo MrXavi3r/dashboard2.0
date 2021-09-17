@@ -27,7 +27,7 @@
     "nouislider-react": "^3.3.2",
     "react": "^16.9.0",
     "react-ace": "^7.0.4",
-    "react-bootstrap": "^1.0.0-beta.12",
+    "react-bootstrap": "^1.6.3",
     "react-bootstrap-editable": "^0.5.1",
     "react-bootstrap-typeahead": "^3.4.7",
     "react-chartjs-2": "^2.8.0",

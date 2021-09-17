@@ -174,7 +174,7 @@ class Sidebar extends Component {
               <span className="menu-icon bg-dark">
                 <i className="mdi mdi-speedometer"></i>
               </span>
-              <span className="menu-title">Dashboard</span>
+              <span className="menu-title text-light">Dashboard</span>
             </Link>
           </li>
           <li
@@ -194,9 +194,9 @@ class Sidebar extends Component {
               data-toggle="collapse"
             >
               <span className="menu-icon bg-dark">
-                <i className="mdi mdi-laptop"></i>
+                <i className="mdi mdi-swap-horizontal"></i>
               </span>
-              <span className="menu-title text-light">Basic UI Elements</span>
+              <span className="menu-title text-light">Transactions</span>
               <i className="menu-arrow"></i>
             </div>
             <Collapse in={this.state.basicUiMenuOpen}>
@@ -206,13 +206,13 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/basic-ui/buttons")
+                        this.isPathActive("/basic-ui/AddTransaction")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/basic-ui/buttons"
+                      to="/basic-ui/AddTransaction"
                     >
-                      Buttons
+                      Add Transaction
                     </Link>
                   </li>
                   <li className="nav-item">

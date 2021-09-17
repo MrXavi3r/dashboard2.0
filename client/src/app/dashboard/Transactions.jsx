@@ -3,6 +3,8 @@ import { Col, Card, Table } from "react-bootstrap";
 import { transactions } from "../data";
 
 export const Transactions = () => {
+
+
   return (
     <Col md={8} xl={8} className="grid-margin">
       <Card className="bg-light">
@@ -31,7 +33,7 @@ export const Transactions = () => {
                     <td>
                       <i className="mdi mdi-currency-usd text-success mdi-24px"></i>
                     </td>
-                    <td className="text-capitalize">{transaction.text}</td>
+                    <td className="text-capitalize">{transaction.text.substring(0, 20)}</td>
                     <td>{transaction.date}</td>
                     <td className="text-capitalize">{transaction.category}</td>
                     <td

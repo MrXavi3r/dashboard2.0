@@ -51,7 +51,7 @@ export const MarketWatchWidget = () => {
       <Card className="bg-light text-dark">
         <Card.Header className="bg-primary d-flex align-items-center justify-content-between">
           <Card.Title as="h4" className="text-white mb-0">
-            <i className="mdi mdi-chart-line pr-2 text-success mdi-24px"> </i>
+            <i className="mdi mdi-chart-timeline-variant pr-2 text-success mdi-24px"> </i>
             Market Watch
           </Card.Title>
           <i className={`fa fa-circle text-${widgetStatusColor} fa-lg`} />
