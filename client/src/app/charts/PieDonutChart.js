@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NVD3Chart from "react-nvd3";
-import { transactions } from "../data";
+import { transactions, categories } from "../data";
 
-let categories = [
-  "housing",
-  "utilities",
-  "food/dining",
-  "clothing/apparel",
-  "transportation",
-  "entertainment/leisure",
-  "health/fitness",
-  "personal care",
-  "medical",
-  "big ticket items",
-  "other",
-];
+
 
 const PieDonutChart = () => {
   const [expenses, setExpenses] = useState([]);

@@ -43,6 +43,20 @@ export const transactions = [
   },
 ];
 
+export const categories = [
+  "housing",
+  "utilities",
+  "food/dining",
+  "clothing/apparel",
+  "transportation",
+  "entertainment/leisure",
+  "health/fitness",
+  "personal care",
+  "medical",
+  "big ticket items",
+  "other",
+];
+
 export const todoData = [
   {
     id: 1,
