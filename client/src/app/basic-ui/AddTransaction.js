@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import { Col, Card, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -8,7 +8,7 @@ import * as yup from "yup";
 
 const AddTransaction = () => {
   const { addTransaction } = useContext(GlobalContext);
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     data: {
       text: "",
       amount: 0,
@@ -16,12 +16,10 @@ const AddTransaction = () => {
       category: "",
     },
   });
-  const [isIncome, setIsIncome] = useState(false);
-  const incomeRef = useRef(null);
 
   const schema = yup.object().shape({
     text: yup.string().min(4, "must be at least 4 characters").required(),
-    amount: yup.number().required().positive().integer(),
+    amount: yup.number().required().min(1),
     date: yup.date().required(),
     category: yup.string().required(),
   });
@@ -31,29 +29,29 @@ const AddTransaction = () => {
       <Card className="bg-info w-100 add-trans-info">
         <div className="px-4 my-3">
           <span className="bg-light rounded-circle">
-            <i className="mdi mdi-plus-box text-success m-1"></i>
+            <i className="mdi mdi-plus-box text-primary m-1"></i>
           </span>
-          <h5 className="text-light">Add A Transaction</h5>
+          <h5 className="text-light mt-1">Add A Transaction</h5>
           <p className="text-light">
             A complete history of all transactions may be viewed in the
-            Transaction List under the Transactions Tab in the menu
+            Transaction List under the Transactions tab in the menu
           </p>
         </div>
         <div className="px-4 my-3">
           <span className="bg-light rounded-circle">
             <i className="mdi mdi-check-bold text-success m-1"></i>
           </span>
-          <h5 className="text-light">Validation</h5>
+          <h5 className="text-light mt-1">Validation</h5>
           <p className="text-light">
-            Complete all fields to add a new entry. Income does not require a
-            selected category. All amounts should be input as positive numbers
+            Complete all fields to add a new entry. Positive numbers for income.
+            Negative numbers for expenses. Select appropriate category.
           </p>
         </div>
         <div className="px-4 my-3">
           <span className="bg-light rounded-circle">
-            <i className="mdi mdi-eye text-success m-1"></i>
+            <i className="mdi mdi-eye text-danger m-1"></i>
           </span>
-          <h5 className="text-light">Quick View</h5>
+          <h5 className="text-light mt-1">Quick View</h5>
           <p className="text-light">
             The 6 most recent transactions may be found in the Recent
             Transactions widget on the dashboard
@@ -65,7 +63,10 @@ const AddTransaction = () => {
           <Formik
             validationSchema={schema}
             initialValues={formData.data}
-            onSubmit={console.log}
+            onSubmit={(values) => {
+              console.log(values);
+              addTransaction(values)
+            }}
           >
             {({
               handleSubmit,
@@ -75,29 +76,13 @@ const AddTransaction = () => {
               touched,
               handleReset,
               isValid,
-              isInValid,
               errors,
             }) => (
-              <Form noValidate onSubmit={handleSubmit} className="">
-                <Form.Group className="">
-                  <div className="d-flex justify-content-around mb-0">
-                    <Form.Check
-                      type="radio"
-                      label="Income"
-                      name="type"
-                      id="income"
-                      ref={incomeRef}
-                    />
-                    <Form.Check
-                      type="radio"
-                      label="Expense"
-                      name="type"
-                      id="expense"
-                      defaultChecked
-                    />
-                  </div>
-                </Form.Group>
-
+              <Form
+                noValidate
+                onSubmit={handleSubmit}
+                className=""
+              >
                 <Form.Group as={Col} className="mt-1 mb-0">
                   <Form.Label className="text-dark">Text</Form.Label>
                   <Form.Control
@@ -118,9 +103,9 @@ const AddTransaction = () => {
                     name="amount"
                     value={values.amount}
                     onChange={handleChange}
-                    min={0}
                     className="bg-light text-dark"
                     isValid={touched.amount && !errors.amount}
+                    isInvalid={0}
                     onBlur={handleBlur}
                   />
                 </Form.Group>
@@ -145,13 +130,12 @@ const AddTransaction = () => {
                   <select
                     className="form-select w-100"
                     name="category"
-                    disabled={isIncome}
                     value={values.category}
                     onChange={handleChange}
-                    isValid={touched.category}
                     onBlur={handleBlur}
                   >
-                    <option value={null}>select a category</option>
+                    <option value="">select a category</option>
+                    <option value={"income"}>Income</option>
                     {categories.map((category, index) => {
                       return (
                         <option
@@ -171,7 +155,7 @@ const AddTransaction = () => {
                     size="lg"
                     type="submit"
                     className="mx-auto"
-                    onClick={handleReset}
+                    disabled={!isValid}
                   >
                     <h4 className="m-0">SUBMIT TRANSACTION</h4>
                   </Button>
