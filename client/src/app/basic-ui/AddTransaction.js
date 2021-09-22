@@ -19,7 +19,7 @@ const AddTransaction = () => {
 
   const schema = yup.object().shape({
     text: yup.string().min(4, "must be at least 4 characters").required(),
-    amount: yup.number().required().min(1),
+    amount: yup.number().required(),
     date: yup.date().required(),
     category: yup.string().required(),
   });

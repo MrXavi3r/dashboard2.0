@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
-import { transactions } from "../data";
+import { GlobalContext } from "../../context/GlobalState";
+// import {transactions} from '../data'
 
 export const Income = () => {
   const [income, setIncome] = useState(0);
+
+  const { transactions } = useContext(GlobalContext);
 
   useEffect(() => {
     let data = [];
@@ -12,7 +15,10 @@ export const Income = () => {
         data.push(transactions[i].amount);
       }
     }
-    let total = data.reduce((acc, curr) => acc + curr);
+    let total = data.reduce((acc, curr) => {
+      return acc + curr;
+    }, 0);
+    console.log("income", data);
     setIncome(total.toLocaleString("en-us"));
   }, []);
 

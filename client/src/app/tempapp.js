@@ -232,26 +232,26 @@ const Sidebar = () => {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/basic-ui/buttons")
+                        this.isPathActive("/basic-ui/AddTransaction")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/basic-ui/buttons"
+                      to="/basic-ui/AddTransaction"
                     >
-                      Buttons
+                      Add Transaction
                     </Link>
                   </li>
                   <li className="nav-item">
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/basic-ui/dropdowns")
+                        this.isPathActive("/basic-ui/TransactionList")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/basic-ui/dropdowns"
+                      to="/basic-ui/TransactionList"
                     >
-                      Dropdowns
+                      Transaction List
                     </Link>
                   </li>
                   <li className="nav-item">

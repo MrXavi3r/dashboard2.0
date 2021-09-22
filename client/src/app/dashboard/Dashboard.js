@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import TodoListComponent from "../apps/TodoListComponent";
 import { Balance } from "./Balance";
 import { Income } from "./Income";
@@ -9,8 +9,15 @@ import { NewsWidget } from "../apps/NewsWidget";
 import { PieWidget } from "./PieWidget";
 import { Messages } from "./Messages";
 import { SliderWidget } from "../apps/SliderWidget";
+import { GlobalContext } from "../../context/GlobalState";
 
 export const Dashboard = () => {
+  const { getTransactions } = useContext(GlobalContext);
+  
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
   return (
     <div className="bg-light">
       <div className="row">

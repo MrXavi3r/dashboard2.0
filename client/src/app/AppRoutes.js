@@ -6,7 +6,7 @@ import Spinner from '../app/shared/Spinner';
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
 const AddTransaction = lazy(() => import('./basic-ui/AddTransaction'));
-const Dropdowns = lazy(() => import('./basic-ui/Dropdowns'));
+const TransactionList = lazy(() => import('./basic-ui/TransactionList'));
 const Typography = lazy(() => import('./basic-ui/Typography'));
 
 const BasicElements = lazy(() => import('./form-elements/BasicElements'));
@@ -32,7 +32,7 @@ const AppRoutes = () => {
           <Route exact path="/dashboard" component={ Dashboard } />
 
           <Route path="/basic-ui/AddTransaction" component={ AddTransaction } />
-          <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
+          <Route path="/basic-ui/TransactionList" component={ TransactionList } />
           <Route path="/basic-ui/typography" component={ Typography } />
 
           <Route path="/form-Elements/basic-elements" component={ BasicElements } />

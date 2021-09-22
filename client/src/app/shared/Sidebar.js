@@ -219,13 +219,13 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/basic-ui/dropdowns")
+                        this.isPathActive("/basic-ui/TransactionList")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/basic-ui/dropdowns"
+                      to="/basic-ui/TransactionList"
                     >
-                      Dropdowns
+                      Transaction List
                     </Link>
                   </li>
                   <li className="nav-item">

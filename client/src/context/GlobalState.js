@@ -53,7 +53,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     try {
-      const res = axios.post(`api/v1/transactions/`, transaction, config);
+      const res = axios.post(`/api/v1/transactions/`, transaction, config);
 
       dispatch({
         type: "ADD_TRANSACTION",
@@ -62,7 +62,7 @@ export const GlobalProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: "TRANSACTION_ERROR",
-        payload: error.response.data.error,
+        payload: error.response.data.error
       });
     }
   }

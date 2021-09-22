@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from "react";
-import { Col, Card, Table } from "react-bootstrap";
+import React, { useEffect, useContext } from 'react';
+import { Col, Card, Table } from 'react-bootstrap';
 import {GlobalContext} from '../../context/GlobalState'
-// import {transactions} from '../data'
 
-export const Transactions = () => {
+const TransactionList = () => {
   const {getTransactions, transactions} = useContext(GlobalContext)
 
   useEffect(() => {
@@ -18,19 +17,16 @@ export const Transactions = () => {
     return formattedDate
   }
 
-
-  return (
-    <Col md={8} xl={8} className="grid-margin">
-      <Card className="bg-light">
-        <Card.Header className="bg-success">
-          <Card.Title as="h4" className="text-light mb-0 p-2">
-            <i className="mdi mdi-chart-line pr-2 mdi-24px"></i> Recent
-            Transactions
-          </Card.Title>
-        </Card.Header>
-
-        <Card.Body className="">
-          <Table responsive hover className="text-dark">
+    return (
+      <Col sm={10} md={14} xl={12} className="mx-auto">
+        <Card className="bg-light">
+          <Card.Header className="bg-primary">
+            <Card.Title as="h4" className="text-light mb-0 p-2">
+              Transactions List
+            </Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Table responsive hover className="text-dark">
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -41,7 +37,7 @@ export const Transactions = () => {
               </tr>
             </thead>
             <tbody>
-              {transactions.slice(0, 6).map((transaction) => {
+              {transactions.map((transaction)=> {
                 return (
                   <tr key={transaction._id}>
                     <td>
@@ -61,9 +57,12 @@ export const Transactions = () => {
                 );
               })}
             </tbody>
-          </Table>
-        </Card.Body>
-      </Card>
-    </Col>
-  );
-};
+            </Table>
+          </Card.Body>
+        </Card>
+      </Col>
+    )
+  
+}
+
+export default TransactionList

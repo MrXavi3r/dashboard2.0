@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NVD3Chart from "react-nvd3";
-import { transactions, categories } from "../data";
-
-
+import { categories } from "../data";
+import { GlobalContext } from "../../context/GlobalState";
+// import {transactions} from '../data'
 
 const PieDonutChart = () => {
   const [expenses, setExpenses] = useState([]);
   const [datumValues, setDatumValues] = useState([]);
+  const { transactions } = useContext(GlobalContext);
 
   useEffect(() => {
     let data = transactions.filter((transaction) => transaction.amount < 0);

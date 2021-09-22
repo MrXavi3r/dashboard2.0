@@ -1,27 +1,34 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
-import {transactions} from '../data';
-
+import { GlobalContext } from "../../context/GlobalState";
+// import {transactions} from '../data'
 
 export const Expenditures = () => {
-const [expenses, setExpenses] = useState(0)
+  const [expenses, setExpenses] = useState(0);
+  const { transactions } = useContext(GlobalContext);
+
   useEffect(() => {
-    let data = []
-    for(let i = 0; i < transactions.length; i++) {
-      if(transactions[i].amount < 0){
-        data.push(transactions[i].amount)
+    let data = [];
+    for (let i = 0; i < transactions.length; i++) {
+      if (transactions[i].amount < 0) {
+        data.push(transactions[i].amount);
       }
     }
-    let total = data.reduce((acc, curr) => acc + curr)
-      setExpenses(total.toLocaleString('en-us'))
-  }, [])
+    let total = data.reduce((acc, curr) => {
+      return acc + curr;
+    }, 0);
+    console.log("expenses", data);
+    setExpenses(total.toLocaleString("en-us"));
+  }, []);
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">
       <Card className="bg-light text-dark border-gray">
         <Card.Body>
           <div className="d-flex align-items-center justify-content-between">
-            <h6 className="mb-4">Expenditures <small>(month to date)</small></h6>
+            <h6 className="mb-4">
+              Expenditures <small>(month to date)</small>
+            </h6>
             <div className="icon icon-box-success ">
               <span className="mdi mdi-arrow-top-right icon-item"></span>
             </div>

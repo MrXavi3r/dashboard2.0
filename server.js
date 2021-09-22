@@ -12,10 +12,10 @@ dotenv.config({ path: "./config/config.env" });
 
 connectDB();
 
-
+app.use(express.json()); // parses incoming requests with JSON payloads
+app.use(morgan("dev")) 
 app.use('/api/v1/transactions', transactions);
-app.use(express.json()); //built-in middleware, parses incoming requests with JSON payloads
-app.use(morgan("dev")) //for colored res status
+
 
 app.use(express.static("client/build")); //serves static files/
 app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));

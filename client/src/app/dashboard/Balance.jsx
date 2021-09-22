@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
-import { transactions } from "../data";
+import { GlobalContext } from "../../context/GlobalState";
+// import {transactions} from '../data'
 
 export const Balance = () => {
   const [total, setTotal] = useState(0);
+  const { transactions } = useContext(GlobalContext);
 
   useEffect(() => {
     const balance = transactions.reduce((acc, { amount }) => {
       let total = acc + amount;
       return total;
     }, 0);
+    console.log("balance", balance);
     setTotal(balance.toLocaleString("en-us"));
   }, []);
 
