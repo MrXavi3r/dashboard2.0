@@ -1,23 +1,18 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Col, Card, Table } from "react-bootstrap";
-import {GlobalContext} from '../../context/GlobalState'
-// import {transactions} from '../data'
+import { GlobalContext } from "../../context/GlobalState";
+// import { transactions } from "../data";
 
 export const Transactions = () => {
-  const {getTransactions, transactions} = useContext(GlobalContext)
-
-  useEffect(() => {
-    getTransactions()
-  }, [])
+  const { transactions } = useContext(GlobalContext);
 
   const formatDate = (date) => {
-    let transDate = new Date(date)
-    let day = String(transDate.getDate()).padStart(2, '0');
-    let month = String(transDate.getMonth() + 1).padStart(2, '0');
-    let formattedDate = `${month}/${day}`
-    return formattedDate
-  }
-
+    let transDate = new Date(date);
+    let day = String(transDate.getDate()).padStart(2, "0");
+    let month = String(transDate.getMonth() + 1).padStart(2, "0");
+    let formattedDate = `${month}/${day}`;
+    return formattedDate;
+  };
 
   return (
     <Col md={8} xl={8} className="grid-margin">
@@ -47,7 +42,9 @@ export const Transactions = () => {
                     <td>
                       <i className="mdi mdi-currency-usd text-success mdi-24px"></i>
                     </td>
-                    <td className="text-capitalize">{transaction.text.substring(0, 20)}</td>
+                    <td className="text-capitalize">
+                      {transaction.text.substring(0, 20)}
+                    </td>
                     <td>{formatDate(transaction.date)}</td>
                     <td className="text-capitalize">{transaction.category}</td>
                     <td

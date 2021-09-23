@@ -5,7 +5,6 @@ import { GlobalContext } from "../../context/GlobalState";
 
 export const Income = () => {
   const [income, setIncome] = useState(0);
-
   const { transactions } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -18,9 +17,8 @@ export const Income = () => {
     let total = data.reduce((acc, curr) => {
       return acc + curr;
     }, 0);
-    console.log("income", data);
     setIncome(total.toLocaleString("en-us"));
-  }, []);
+  }, [transactions]);
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">

@@ -17,9 +17,8 @@ export const Expenditures = () => {
     let total = data.reduce((acc, curr) => {
       return acc + curr;
     }, 0);
-    console.log("expenses", data);
     setExpenses(total.toLocaleString("en-us"));
-  }, []);
+  }, [transactions]);
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">

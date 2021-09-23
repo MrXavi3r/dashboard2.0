@@ -12,9 +12,8 @@ export const Balance = () => {
       let total = acc + amount;
       return total;
     }, 0);
-    console.log("balance", balance);
     setTotal(balance.toLocaleString("en-us"));
-  }, []);
+  }, [transactions]);
 
   return (
     <Col xl={4} className="grid-margin">

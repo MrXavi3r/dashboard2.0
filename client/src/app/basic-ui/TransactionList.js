@@ -7,7 +7,7 @@ const TransactionList = () => {
 
   useEffect(() => {
     getTransactions()
-  }, [])
+  },[])
 
   const formatDate = (date) => {
     let transDate = new Date(date)

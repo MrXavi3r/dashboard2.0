@@ -12,7 +12,7 @@ const PieDonutChart = () => {
   useEffect(() => {
     let data = transactions.filter((transaction) => transaction.amount < 0);
     setExpenses(data);
-  }, []);
+  }, [transactions]);
 
   useEffect(() => {
     const categoryHandler = (category) => {
