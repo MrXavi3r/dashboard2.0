@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
-import { GlobalContext } from "../../context/GlobalState";
+import { TransactionsContext } from "../../context/TransactionsState";
 // import {transactions} from '../data'
 
 export const Balance = () => {
   const [total, setTotal] = useState(0);
-  const { transactions } = useContext(GlobalContext);
+  const { transactions } = useContext(TransactionsContext);
 
   useEffect(() => {
     const balance = transactions.reduce((acc, { amount }) => {

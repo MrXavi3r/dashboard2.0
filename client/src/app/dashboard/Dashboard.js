@@ -9,10 +9,10 @@ import { NewsWidget } from "../apps/NewsWidget";
 import { PieWidget } from "./PieWidget";
 import { Messages } from "./Messages";
 import { SliderWidget } from "../apps/SliderWidget";
-import { GlobalContext } from "../../context/GlobalState";
+import { TransactionsContext } from "../../context/TransactionsState";
 
 export const Dashboard = () => {
-  const { getTransactions } = useContext(GlobalContext);
+  const { getTransactions } = useContext(TransactionsContext);
   
   useEffect(() => {
     getTransactions();

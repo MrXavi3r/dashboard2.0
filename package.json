@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/MrXavi3r/dashboard2.0#readme",
   "dependencies": {
+    "axios": "^0.21.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.5",

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Col, Card, Table } from "react-bootstrap";
-import { GlobalContext } from "../../context/GlobalState";
+import { TransactionsContext } from "../../context/TransactionsState";
 // import { transactions } from "../data";
 
 export const Transactions = () => {
-  const { transactions } = useContext(GlobalContext);
+  const { transactions } = useContext(TransactionsContext);
 
   const formatDate = (date) => {
     let transDate = new Date(date);
@@ -25,19 +25,19 @@ export const Transactions = () => {
         </Card.Header>
 
         <Card.Body className="">
-          <Table responsive striped className="text-dark">
+          <Table responsive striped borderless className="text-dark">
           <thead>
               <tr>
-                <th scope="col" className="border border-0">
+                <th scope="col">
                   Name
                 </th>
-                <th scope="col" className="border border-0">
+                <th scope="col">
                   Date
                 </th>
-                <th scope="col" className="border border-0">
+                <th scope="col">
                   Category
                 </th>
-                <th scope="col" className="border border-0">
+                <th scope="col">
                   Amount
                 </th>
               </tr>
@@ -46,20 +46,20 @@ export const Transactions = () => {
               {transactions.slice(0, 6).map((transaction) => {
                 return (
                   <tr key={transaction._id}>
-                    <td className="text-capitalize border border-0">
+                    <td className="text-capitalize">
                       {transaction.text.substring(0, 20)}
                     </td>
-                    <td className="text-capitalize border border-0">
+                    <td className="text-capitalize">
                       {formatDate(transaction.date)}
                     </td>
-                    <td className="text-capitalize border border-0">
+                    <td className="text-capitalize">
                       {transaction.category}
                     </td>
                     <td
                       className={
                         transaction.amount > 0
-                          ? "text-success border border-0"
-                          : "text-danger border border-0"
+                          ? "text-success"
+                          : "text-danger"
                       }
                     >
                       {transaction.amount.toLocaleString("en-us")}
