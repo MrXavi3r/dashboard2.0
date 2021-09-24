@@ -70,7 +70,7 @@
 @import "../assets/styles/layout";
 
 
-// an override of templated plugin styles for table hovers
+// an override of templated plugin styles for table & hovers
 .table-hover {
     tbody {
         tr {
@@ -80,6 +80,10 @@
             }
         }
     }
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #7c83da;
 }
 
 // add transaction form info hide on mobile devices

@@ -25,31 +25,41 @@ export const Transactions = () => {
         </Card.Header>
 
         <Card.Body className="">
-          <Table responsive hover className="text-dark">
-            <thead>
+          <Table responsive striped className="text-dark">
+          <thead>
               <tr>
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                <th scope="col">Date</th>
-                <th scope="col">Category</th>
-                <th scope="col">Amount</th>
+                <th scope="col" className="border border-0">
+                  Name
+                </th>
+                <th scope="col" className="border border-0">
+                  Date
+                </th>
+                <th scope="col" className="border border-0">
+                  Category
+                </th>
+                <th scope="col" className="border border-0">
+                  Amount
+                </th>
               </tr>
             </thead>
             <tbody>
               {transactions.slice(0, 6).map((transaction) => {
                 return (
                   <tr key={transaction._id}>
-                    <td>
-                      <i className="mdi mdi-currency-usd text-success mdi-24px"></i>
-                    </td>
-                    <td className="text-capitalize">
+                    <td className="text-capitalize border border-0">
                       {transaction.text.substring(0, 20)}
                     </td>
-                    <td>{formatDate(transaction.date)}</td>
-                    <td className="text-capitalize">{transaction.category}</td>
+                    <td className="text-capitalize border border-0">
+                      {formatDate(transaction.date)}
+                    </td>
+                    <td className="text-capitalize border border-0">
+                      {transaction.category}
+                    </td>
                     <td
                       className={
-                        transaction.amount > 0 ? "text-success" : "text-danger"
+                        transaction.amount > 0
+                          ? "text-success border border-0"
+                          : "text-danger border border-0"
                       }
                     >
                       {transaction.amount.toLocaleString("en-us")}
