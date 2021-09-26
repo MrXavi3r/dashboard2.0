@@ -9,7 +9,7 @@ const AddTransaction = lazy(() => import('./basic-ui/AddTransaction'));
 const TransactionList = lazy(() => import('./basic-ui/TransactionList'));
 const Typography = lazy(() => import('./basic-ui/Typography'));
 
-const BasicElements = lazy(() => import('./form-elements/BasicElements'));
+const BasicElements = lazy(() => import('./market-watch/manageSymbols'));
 
 const BasicTable = lazy(() => import('./tables/BasicTable'));
 
@@ -35,7 +35,7 @@ const AppRoutes = () => {
           <Route path="/basic-ui/TransactionList" component={ TransactionList } />
           <Route path="/basic-ui/typography" component={ Typography } />
 
-          <Route path="/form-Elements/basic-elements" component={ BasicElements } />
+          <Route path="/market-watch/manageSymbols" component={ BasicElements } />
 
           <Route path="/tables/basic-table" component={ BasicTable } />
 

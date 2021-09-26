@@ -55,7 +55,7 @@ class Sidebar extends Component {
     const dropdownPaths = [
       { path: "/apps", state: "appsMenuOpen" },
       { path: "/basic-ui", state: "basicUiMenuOpen" },
-      { path: "/form-elements", state: "formElementsMenuOpen" },
+      { path: "/market-watch", state: "marketWatchMenuOpen" },
       { path: "/tables", state: "tablesMenuOpen" },
       { path: "/icons", state: "iconsMenuOpen" },
       { path: "/charts", state: "chartsMenuOpen" },
@@ -247,40 +247,39 @@ class Sidebar extends Component {
           </li>
           <li
             className={
-              this.isPathActive("/form-elements")
+              this.isPathActive("/market-watch")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
             <div
               className={
-                this.state.formElementsMenuOpen
+                this.state.marketWatchMenuOpen
                   ? "nav-link menu-expanded"
                   : "nav-link"
               }
-              onClick={() => this.toggleMenuState("formElementsMenuOpen")}
+              onClick={() => this.toggleMenuState("marketWatchMenuOpen")}
               data-toggle="collapse"
             >
               <span className="menu-icon bg-dark">
-                <i className="mdi mdi-playlist-play"></i>
+                <i className="mdi mdi-scale-balance text-success"></i>
               </span>
-              <span className="menu-title text-light">Form Elements</span>
+              <span className="menu-title text-light">Market Watch</span>
               <i className="menu-arrow"></i>
             </div>
-            <Collapse in={this.state.formElementsMenuOpen}>
+            <Collapse in={this.state.marketWatchMenuOpen}>
               <div>
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item text-light">
-                    {" "}
                     <Link
                       className={
-                        this.isPathActive("/form-elements/basic-elements")
+                        this.isPathActive("/market-watch/manageSymbols")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/form-elements/basic-elements"
+                      to="/market-watch/manageSymbols"
                     >
-                      Basic Elements
+                      Manage Symbols
                     </Link>
                   </li>
                 </ul>

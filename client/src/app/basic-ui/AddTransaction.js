@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { GlobalContext } from "../../context/GlobalState";
+import { TransactionsContext } from "../../context/TransactionsState";
 import { Col, Card, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { categories } from "../data";
@@ -7,7 +7,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 const AddTransaction = () => {
-  const { addTransaction } = useContext(GlobalContext);
+  const { addTransaction } = useContext(TransactionsContext);
   const [formData] = useState({
     data: {
       text: "",
