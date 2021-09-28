@@ -5,17 +5,17 @@ import Spinner from '../app/shared/Spinner';
 
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
-const AddTransaction = lazy(() => import('./basic-ui/AddTransaction'));
-const TransactionList = lazy(() => import('./basic-ui/TransactionList'));
-const Typography = lazy(() => import('./basic-ui/Typography'));
+const AddTransaction = lazy(() => import('./transactions/AddTransaction'));
+const TransactionList = lazy(() => import('./transactions/TransactionList'));
+const Typography = lazy(() => import('./transactions/Typography'));
 
-const BasicElements = lazy(() => import('./market-watch/manageSymbols'));
+const MarketWatch = lazy(() => import('./market-watch/manageSymbols'));
 
-const BasicTable = lazy(() => import('./tables/BasicTable'));
+const News = lazy(() => import('./news/BasicTable'));
 
-const Mdi = lazy(() => import('./icons/Mdi'));
+const Goals = lazy(() => import('./goals/Mdi'));
 
-const ChartJs = lazy(() => import('./charts/ChartJs'));
+const Planner = lazy(() => import('./planner/Calendar'));
 
 const Error404 = lazy(() => import('./error-pages/Error404'));
 const Error500 = lazy(() => import('./error-pages/Error500'));
@@ -31,17 +31,17 @@ const AppRoutes = () => {
         <Switch>
           <Route exact path="/dashboard" component={ Dashboard } />
 
-          <Route path="/basic-ui/AddTransaction" component={ AddTransaction } />
-          <Route path="/basic-ui/TransactionList" component={ TransactionList } />
-          <Route path="/basic-ui/typography" component={ Typography } />
+          <Route path="/transactions/AddTransaction" component={ AddTransaction } />
+          <Route path="/transactions/TransactionList" component={ TransactionList } />
+          <Route path="/transactions/typography" component={ Typography } />
 
-          <Route path="/market-watch/manageSymbols" component={ BasicElements } />
+          <Route path="/market-watch/manageSymbols" component={ MarketWatch } />
 
-          <Route path="/tables/basic-table" component={ BasicTable } />
+          <Route path="/news/basic-table" component={ News } />
 
-          <Route path="/icons/mdi" component={ Mdi } />
+          <Route path="/goals/mdi" component={ Goals } />
 
-          <Route path="/charts/chart-js" component={ ChartJs } />
+          <Route path="/planner/Calendar.js" component={ Planner } />
 
 
           <Route path="/user-pages/login-1" component={ Login } />

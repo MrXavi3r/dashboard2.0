@@ -101,3 +101,13 @@ export const todoData = [
     isCompleted: false,
   },
 ];
+
+export const events = [
+   {
+    title: "birthday",
+    start: "2021-10-19T00:00:00.000Z",
+    end: "2021-10-19T00:01:00.000Z",
+    allDay: false,
+    resource: "any",
+  }
+]

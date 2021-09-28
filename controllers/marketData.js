@@ -5,28 +5,79 @@ const Ticker = require("../models/TickerData");
 // @desc   GET PRICE DATA FROM TWELVE API
 // @route   /api/v1/market_data
 // @access   Public
-exports.getData = async (req, res, next) => {
-  const marketsApiKey = process.env.MARKETS_KEY;
-  let url = `https://api.twelvedata.com/time_series?`;
-  let params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
-  let tickers = [];
-  let symbols = tickers.join();
+// exports.getData = async (req, res, next) => {
+//   const marketsApiKey = process.env.MARKETS_KEY;
+//   const url = `https://api.twelvedata.com/time_series?`;
+//   const params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
+//   const tickers = await stringifyTickerData();
 
+//   try {
+//     const data = await axios.get(
+//       url + "symbol=" + tickers + params + marketsApiKey
+//     );
+//     if (data) {
+//       return res.status(200).send(data.data);
+//     } else {
+//       res.status(404).send("Sorry, we cannot find that!");
+//     }
+//   } catch (error) {
+//     console.log(error)
+//     return res.status(500).json({
+//       success: false,
+//       error: "Server Error",
+//     });
+//   }
+// };
+
+// CONVERT TICKER SYMBOL DATA FROM API TO A SINGLE STRING
+// NECESSARY FOR MAKING A BATCH REQUEST TO TWELVE DATA API
+const stringifyTickerData = async () => {
   try {
-    const data = await axios.get(
-      url + "symbol=" + symbols + params + marketsApiKey
-    );
-
-    return res.status(200).json({
-      success: true,
-      // count: data.length,
-      data: data,
-    });
+    const response = await Ticker.find();
+    return response.map((symbol) => symbol.ticker).join();
   } catch (error) {
-    return res.status(500).json({
-      success: false,
-      error: "Server Error",
-    });
+    console.log(error, "stringify did not run");
+  }
+};
+
+
+//CACHE FETCH REQUESTS IN ORDER TO NOT OVERPOWER TWELVE API RATE LIMITS
+//CACHE IS AUTO REFRESHED EVERY 5 MINUTE INTERVAL
+let cached = [];
+
+const fetchData = async () => {
+  const marketsApiKey = process.env.MARKETS_KEY;
+  const url = `https://api.twelvedata.com/time_series?`;
+  const params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
+  const tickers = await stringifyTickerData();
+  const data = await axios.get(url + "symbol=" + tickers + params + marketsApiKey);
+  console.log(data)
+  const parsed = []
+  for (const symbol in data) {
+    parsed.push({
+      meta: data[symbol].meta,
+      values: data[symbol].values,
+      symbol: symbol
+    })
+  }
+  cached = parsed;
+};
+
+
+// FETCH DATA ON INIT IN ORDER TO IMMEDIATELY STORE IT IN CACHE
+fetchData();
+setInterval(async () => fetchData(), 300000);
+
+
+// @desc   GET THE DATA FROM CACHE AND SEND IT TO CLIENT// 
+// @route   /api/v1/market_data
+// @access   Public
+exports.getData = async (req, res, next) => {
+  try {
+    res.send(cached);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, error: "Server Error" });
   }
 };
 
@@ -56,8 +107,8 @@ exports.getTickers = async (req, res, next) => {
 exports.addTicker = async (req, res, next) => {
   try {
     const data = {
-      ticker: req.body.ticker
-    }
+      ticker: req.body.ticker,
+    };
 
     const ticker = await Ticker.create(data);
 

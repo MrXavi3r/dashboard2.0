@@ -17,11 +17,11 @@ export const MarketDataProvider = ({ children }) => {
   // RETRIEVE MARKET DATA FROM MARKET DATA API
   async function getData() {
     try {
-      const res = await axios.get("/api/v1/market_data/");
+      const res = await axios.get("/api/v1/market_data");
 
       dispatch({
         type: "GET_DATA",
-        payload: res.data.data,
+        payload: res.data,
       });
     } catch (error) {
       dispatch({

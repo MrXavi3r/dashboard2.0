@@ -53,7 +53,7 @@ const ManageSymbols = () => {
           <Card className="bg-light text-dark">
             <Card.Body className="mx-auto">
               <ul>
-                <li>Add symbols for the MarketWatch widget to watch</li>
+                <li>Add symbols for the MarketWatch widget to track</li>
                 <li>Up to 5 symbols may be stored at a time</li>
                 <li>Delete symbols as needed in the list above</li>
               </ul>
@@ -69,6 +69,7 @@ const ManageSymbols = () => {
                     className="bg-light w-50 mx-auto"
                     value={tickerString}
                     onChange={(e) => setTickerString(e.target.value)}
+                    disabled={tickerSymbols.length > 4}
                   />
                 </Form.Group>
                 <div className="d-flex justify-content-center">

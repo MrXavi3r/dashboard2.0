@@ -1,83 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
-const marketsApiKey = process.env.REACT_APP_MARKETS_KEY;
-let url = `https://api.twelvedata.com/time_series?`;
-let params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
+import { MarketDataContext } from "../../context/MarketDataState";
 
-let tickers = [
-  {
-    symbol: "TSLA",
-    values: null,
-  },
-  {
-    symbol: "BTC/USD",
-    values: null,
-  },
-  {
-    symbol: "AAPL",
-    values: null,
-  },
-  {
-    symbol: "AMZN",
-    values: null,
-  },
-  {
-    symbol: "XAU/USD",
-    values: null,
-  },
-];
+
 export const MarketWatchWidget = () => {
   const [widgetStatusColor, setWidgetStatusColor] = useState("gray");
-  const [marketData, setMarketData] = useState([]);
+  const { getData, marketData } = useContext(MarketDataContext);
 
+  
   useEffect(() => {
-    async function init() {
-      let tickerData = [];
-      for (let i = 0; i < tickers.length; i++) {
-        let response = await fetch(
-          url + "symbol=" + tickers[i].symbol + params + marketsApiKey
-         );
-        let data = await response.json()
-        tickerData = [...tickerData, {symbol: data.meta.symbol,  values: data.values[0]}];
-      }
-      setMarketData([...tickerData]);
-      setWidgetStatusColor("success");
-    }
-    // init();
-  }, []);
+    getData();
+    marketData ? setWidgetStatusColor('success') : setWidgetStatusColor('gray')
+  }, [])
+
+  console.log(marketData)
 
   return (
     <Col md={6} xl={4} className="grid-margin">
       <Card className="bg-light text-dark">
         <Card.Header className="bg-primary d-flex align-items-center justify-content-between">
           <Card.Title as="h4" className="text-white mb-0">
-            <i className="mdi mdi-chart-timeline-variant pr-2 text-success mdi-24px"> </i>
+            <i className="mdi mdi-chart-timeline-variant pr-2 text-success mdi-24px">
+              {" "}
+            </i>
             Market Watch
           </Card.Title>
           <i className={`fa fa-circle text-${widgetStatusColor} fa-lg`} />
         </Card.Header>
         <Card.Body className="pb-0">
           <ul>
-            {marketData.length ?
+            {marketData && marketData.length ? (
               marketData.map((ticker, index) => {
                 return (
                   <li
                     key={index}
-                    className="d-flex align-items-center justify-content-between border border-0 border-dark"
+                    className="d-flex align-items-center justify-content-between border border-0 border-dark border-bottom-1 my-2"
                   >
-                    <p> {ticker.symbol} </p>
-                    <span
-                      className={
-                        ticker.values.previous_close > ticker.values.close
-                          ? "text-danger"
-                          : "text-success"
-                      }
-                    >
-                      {ticker.values ? ticker.values.close : "N/A"}
-                    </span>
+                    <div className="d-flex flex-column">
+                      <p className="mb-0"> {ticker.symbol} </p>
+                      <small className="text-muted">
+                        {ticker.meta.exchange || ticker.meta.type}
+                      </small>
+                    </div>
+                    <div className="flex-1">
+                      <span
+                        className={
+                          ticker.values.previous_close > ticker.values.close
+                            ? "text-danger"
+                            : "text-success"
+                        }
+                      >
+                        {ticker.values ? ticker.values.close : "N/A"}
+                      </span>
+                    </div>
                   </li>
                 );
-              }) : <h4 className="text-danger text-center">MARKET DATA OFFLINE</h4>}
+              })
+            ) : (
+              <h4 className="text-danger text-center">MARKET DATA OFFLINE</h4>
+            )}
           </ul>
         </Card.Body>
       </Card>

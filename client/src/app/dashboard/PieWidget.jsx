@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Card } from "react-bootstrap";
-import PieDonutChart from "../charts/PieDonutChart";
+import PieDonutChart from "../planner/PieDonutChart";
 export const PieWidget = () => {
   return (
     <Col md={4} xl={4} className="grid-margin">

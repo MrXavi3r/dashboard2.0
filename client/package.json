@@ -28,6 +28,7 @@
     "nouislider-react": "^3.3.2",
     "react": "^16.9.0",
     "react-ace": "^7.0.4",
+    "react-big-calendar": "^0.35.0",
     "react-bootstrap": "^1.6.3",
     "react-bootstrap-editable": "^0.5.1",
     "react-bootstrap-formik": "^1.7.2",
