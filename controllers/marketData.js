@@ -1,34 +1,6 @@
 const axios = require("axios");
 const Ticker = require("../models/TickerData");
 
-
-// @desc   GET PRICE DATA FROM TWELVE API
-// @route   /api/v1/market_data
-// @access   Public
-// exports.getData = async (req, res, next) => {
-//   const marketsApiKey = process.env.MARKETS_KEY;
-//   const url = `https://api.twelvedata.com/time_series?`;
-//   const params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
-//   const tickers = await stringifyTickerData();
-
-//   try {
-//     const data = await axios.get(
-//       url + "symbol=" + tickers + params + marketsApiKey
-//     );
-//     if (data) {
-//       return res.status(200).send(data.data);
-//     } else {
-//       res.status(404).send("Sorry, we cannot find that!");
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     return res.status(500).json({
-//       success: false,
-//       error: "Server Error",
-//     });
-//   }
-// };
-
 // CONVERT TICKER SYMBOL DATA FROM API TO A SINGLE STRING
 // NECESSARY FOR MAKING A BATCH REQUEST TO TWELVE DATA API
 const stringifyTickerData = async () => {
@@ -40,41 +12,40 @@ const stringifyTickerData = async () => {
   }
 };
 
-
 //CACHE FETCH REQUESTS IN ORDER TO NOT OVERPOWER TWELVE API RATE LIMITS
 //CACHE IS AUTO REFRESHED EVERY 5 MINUTE INTERVAL
 let cached = [];
-
 const fetchData = async () => {
   const marketsApiKey = process.env.MARKETS_KEY;
   const url = `https://api.twelvedata.com/time_series?`;
   const params = `&interval=1day&previous_close=true&outputsize=1&dp=2&apikey=`;
   const tickers = await stringifyTickerData();
-  const data = await axios.get(url + "symbol=" + tickers + params + marketsApiKey);
-  console.log(data)
-  const parsed = []
-  for (const symbol in data) {
+  const data = await axios.get(
+    url + "symbol=" + tickers + params + marketsApiKey
+  );
+  const parsed = [];
+  const symbols = data.data
+  for (const symbol in symbols) {
     parsed.push({
-      meta: data[symbol].meta,
-      values: data[symbol].values,
-      symbol: symbol
-    })
+      meta: symbols[symbol].meta,
+      values: symbols[symbol].values,
+      symbol: symbol,
+    });
   }
   cached = parsed;
 };
 
-
 // FETCH DATA ON INIT IN ORDER TO IMMEDIATELY STORE IT IN CACHE
-fetchData();
+setTimeout(() => fetchData(), 0);
 setInterval(async () => fetchData(), 300000);
 
 
-// @desc   GET THE DATA FROM CACHE AND SEND IT TO CLIENT// 
+// @desc   GET THE DATA FROM CACHE AND SEND IT TO CLIENT//
 // @route   /api/v1/market_data
 // @access   Public
 exports.getData = async (req, res, next) => {
   try {
-    res.send(cached);
+    res.status(200).send(cached);
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, error: "Server Error" });

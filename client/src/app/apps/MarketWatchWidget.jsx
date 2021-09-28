@@ -2,18 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
 import { MarketDataContext } from "../../context/MarketDataState";
 
-
 export const MarketWatchWidget = () => {
   const [widgetStatusColor, setWidgetStatusColor] = useState("gray");
   const { getData, marketData } = useContext(MarketDataContext);
 
-  
   useEffect(() => {
     getData();
-    marketData ? setWidgetStatusColor('success') : setWidgetStatusColor('gray')
-  }, [])
+  }, []);
 
-  console.log(marketData)
+  useEffect(() => {
+    marketData ? setWidgetStatusColor("success") : setWidgetStatusColor("gray");
+  }, []);
 
   return (
     <Col md={6} xl={4} className="grid-margin">
@@ -37,7 +36,7 @@ export const MarketWatchWidget = () => {
                     className="d-flex align-items-center justify-content-between border border-0 border-dark border-bottom-1 my-2"
                   >
                     <div className="d-flex flex-column">
-                      <p className="mb-0"> {ticker.symbol} </p>
+                      <h5 className="mb-0 text-uppercase"> {ticker.symbol} </h5>
                       <small className="text-muted">
                         {ticker.meta.exchange || ticker.meta.type}
                       </small>
@@ -45,12 +44,13 @@ export const MarketWatchWidget = () => {
                     <div className="flex-1">
                       <span
                         className={
-                          ticker.values.previous_close > ticker.values.close
+                          ticker.values[0].previous_close >
+                          ticker.values[0].close
                             ? "text-danger"
                             : "text-success"
                         }
                       >
-                        {ticker.values ? ticker.values.close : "N/A"}
+                        {ticker.values[0].close || "N/A"}
                       </span>
                     </div>
                   </li>
