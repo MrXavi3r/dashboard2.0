@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Card } from "react-bootstrap";
-
-const newsApiKey = process.env.REACT_APP_NEWS_KEY;
-const newsUrl =
-  "https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=3";
+import axios from 'axios'
 
 export const NewsWidget = () => {
   const [newsArticles, setNewsArticles] = useState([]);
@@ -11,12 +8,11 @@ export const NewsWidget = () => {
 
   useEffect(() => {
     async function fetchNewsData() {
-      const response = await fetch(`${newsUrl}&apiKey=${newsApiKey}`);
-      const news = await response.json();
-      setNewsArticles(news.articles);
+      let response = await axios.get('/api/v1/news_data')
+      setNewsArticles(response.data);
       setNewsWidgetStatusColor("success");
     }
-    // fetchNewsData();
+    fetchNewsData();
   }, []);
 
   return (

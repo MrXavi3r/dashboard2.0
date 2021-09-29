@@ -37,7 +37,8 @@ const fetchData = async () => {
 
 // FETCH DATA ON INIT IN ORDER TO IMMEDIATELY STORE IT IN CACHE
 setTimeout(() => fetchData(), 0);
-setInterval(async () => fetchData(), 300000);
+//INITIATES THE INTERVAL FOR FETCHING MARKET DATA
+setInterval(() => fetchData(), 300000);
 
 
 // @desc   GET THE DATA FROM CACHE AND SEND IT TO CLIENT//
@@ -47,7 +48,6 @@ exports.getData = async (req, res, next) => {
   try {
     res.status(200).send(cached);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ success: false, error: "Server Error" });
   }
 };
