@@ -24,7 +24,7 @@ const fetchData = async () => {
     url + "symbol=" + tickers + params + marketsApiKey
   );
   const parsed = [];
-  const symbols = data.data
+  const symbols = data.data;
   for (const symbol in symbols) {
     parsed.push({
       meta: symbols[symbol].meta,
@@ -39,7 +39,6 @@ const fetchData = async () => {
 setTimeout(() => fetchData(), 0);
 //INITIATES THE INTERVAL FOR FETCHING MARKET DATA
 setInterval(() => fetchData(), 300000);
-
 
 // @desc   GET THE DATA FROM CACHE AND SEND IT TO CLIENT//
 // @route   /api/v1/market_data

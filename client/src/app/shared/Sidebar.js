@@ -397,11 +397,11 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/goals/mdi")
+                        this.isPathActive("/goals/Goals")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/goals/mdi"
+                      to="/goals/Goals"
                     >
                       Goals
                     </Link>

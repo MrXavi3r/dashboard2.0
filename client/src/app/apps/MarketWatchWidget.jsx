@@ -11,7 +11,9 @@ export const MarketWatchWidget = () => {
   }, []);
 
   useEffect(() => {
-    marketData ? setWidgetStatusColor("success") : setWidgetStatusColor("gray");
+    marketData.length
+      ? setWidgetStatusColor("success")
+      : setWidgetStatusColor("gray");
   }, []);
 
   return (
