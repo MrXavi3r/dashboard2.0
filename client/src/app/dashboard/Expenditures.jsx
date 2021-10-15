@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Col, Card } from "react-bootstrap";
 import { TransactionsContext } from "../../context/TransactionsState";
-// import {transactions} from '../data'
+// import { transactions } from "../data";
 
 export const Expenditures = () => {
   const [expenses, setExpenses] = useState(0);
@@ -9,11 +9,13 @@ export const Expenditures = () => {
 
   useEffect(() => {
     let data = [];
-    for (let i = 0; i < transactions.length; i++) {
-      if (transactions[i].amount < 0) {
-        data.push(transactions[i].amount);
+
+    transactions.forEach((transaction) => {
+      if (transaction.amount < 0) {
+        data.push(transaction.amount);
       }
-    }
+    });
+
     let total = data.reduce((acc, curr) => {
       return acc + curr;
     }, 0);
@@ -22,7 +24,7 @@ export const Expenditures = () => {
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">
-      <Card className="bg-light text-dark border-gray">
+      <Card className="bg-light text-dark border-gray rounded-3">
         <Card.Body>
           <div className="d-flex align-items-center justify-content-between">
             <h6 className="mb-4">

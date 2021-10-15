@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Col, Row, ProgressBar, Nav } from "react-bootstrap";
 
-const balanceGoalPercentage = 40;
-const incomeGoalPercentage = 70;
-const spendingGoalPercentage = 90;
+const balanceGoalPercentage = 10;
+const incomeGoalPercentage = 40;
+const spendingGoalPercentage = 74;
 
 const Goals = () => {
   const [balanceVariantColor, setBalanceVariantColor] = useState("primary");
@@ -11,37 +11,29 @@ const Goals = () => {
   const [spendingVariantColor, setSpendingVariantColor] = useState("primary");
   const [activeKey, setActiveKey] = useState("overview");
 
-  const getBalanceVariant = () => {
-    if (balanceGoalPercentage < 33) {
+  const colorSelect = (num, type) => {
+    if (type === "income" && num < 33) {
+      setIncomeVariantColor("danger");
+    } else if (type === "balance" && num < 33) {
       setBalanceVariantColor("danger");
-    } else if (balanceGoalPercentage > 33 && balanceGoalPercentage < 66) {
+    } else if (type == "income" && num > 33 && num < 66) {
       setBalanceVariantColor("warning");
-    } else if (balanceGoalPercentage > 66 && balanceGoalPercentage <= 99) {
+    } else if (type == "income" && num > 66 && num < 99) {
+      setIncomeVariantColor("primary");
+    } else if (type == "income" && num > 99) {
+      setIncomeVariantColor("success");
+    } else if (type == "spending" && num < 33) {
+      setSpendingVariantColor("success");
+    } else if (type == "spending" && num > 33 && num < 75) {
+      setSpendingVariantColor("warning");
+    } else if (type == "spending" && num > 75) {
+      setSpendingVariantColor("danger");
+    } else if (type == "balance" && num > 33 && num < 66) {
+      setBalanceVariantColor("warning");
+    } else if (type == "balance" && num > 66 && num < 99) {
       setBalanceVariantColor("primary");
     } else {
       setBalanceVariantColor("success");
-    }
-  };
-
-  const getIncomeVariant = () => {
-    if (incomeGoalPercentage < 33) {
-      setIncomeVariantColor("danger");
-    } else if (incomeGoalPercentage > 33 && incomeGoalPercentage < 66) {
-      setIncomeVariantColor("warning");
-    } else if (incomeGoalPercentage > 66 && incomeGoalPercentage <= 99) {
-      setIncomeVariantColor("primary");
-    } else {
-      setIncomeVariantColor("success");
-    }
-  };
-
-  const getSpendingVariant = () => {
-    if (spendingGoalPercentage < 33) {
-      setSpendingVariantColor("success");
-    } else if (spendingGoalPercentage > 33 && spendingGoalPercentage < 75) {
-      setSpendingVariantColor("warning");
-    } else {
-      setSpendingVariantColor("danger");
     }
   };
 
@@ -50,9 +42,9 @@ const Goals = () => {
   };
 
   useEffect(() => {
-    getBalanceVariant();
-    getIncomeVariant();
-    getSpendingVariant();
+    colorSelect(spendingGoalPercentage, "spending");
+    colorSelect(incomeGoalPercentage, "income");
+    colorSelect(balanceGoalPercentage, "balance");
   }, []);
 
   return (
