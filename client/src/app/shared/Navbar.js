@@ -2,7 +2,6 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 const Navbar = () => {
   const toggleOffcanvas = () => {
     document.querySelector(".sidebar-offcanvas").classList.toggle("active");
@@ -39,68 +38,6 @@ const Navbar = () => {
           </li>
         </ul>
         <ul className="navbar-nav navbar-nav-right">
-          {/* <Dropdown alignRight as="li" className="nav-item d-none d-lg-block">
-            <Dropdown.Toggle className="nav-link btn btn-success create-new-button no-caret">
-              + Create New Project
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu className="navbar-dropdown preview-list create-new-dropdown-menu">
-              <h6 className="p-3 mb-0">Projects</h6>
-              <Dropdown.Divider />
-              <Dropdown.Item
-                href="!#"
-                onClick={(evt) => evt.preventDefault()}
-                className="preview-item"
-              >
-                <div className="preview-thumbnail">
-                  <div className="preview-icon bg-dark rounded-circle">
-                    <i className="mdi mdi-file-outline text-primary"></i>
-                  </div>
-                </div>
-                <div className="preview-item-content">
-                  <p className="preview-subject ellipsis mb-1">
-                    Software Development
-                  </p>
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item
-                href="!#"
-                onClick={(evt) => evt.preventDefault()}
-                className="preview-item"
-              >
-                <div className="preview-thumbnail">
-                  <div className="preview-icon bg-dark rounded-circle">
-                    <i className="mdi mdi-web text-info"></i>
-                  </div>
-                </div>
-                <div className="preview-item-content">
-                  <p className="preview-subject ellipsis mb-1">
-                    UI Development
-                  </p>
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item
-                href="!#"
-                onClick={(evt) => evt.preventDefault()}
-                className="preview-item"
-              >
-                <div className="preview-thumbnail">
-                  <div className="preview-icon bg-dark rounded-circle">
-                    <i className="mdi mdi-layers text-danger"></i>
-                  </div>
-                </div>
-                <div className="preview-item-content">
-                  <p className="preview-subject ellipsis mb-1">
-                    Software Testing
-                  </p>
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <p className="p-3 mb-0 text-center">See all projects</p>
-            </Dropdown.Menu>
-          </Dropdown> */}
           <li className="nav-item d-none d-lg-block">
             <a
               className="nav-link"
@@ -136,9 +73,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="preview-item-content">
-                  <p className="preview-subject ellipsis mb-1">
-                    Mark send you a message
-                  </p>
+                  <p className="preview-subject ellipsis mb-1">new message</p>
                   <p className="text-muted mb-0"> 1 Minutes ago </p>
                 </div>
               </Dropdown.Item>
@@ -158,9 +93,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="preview-item-content">
-                  <p className="preview-subject ellipsis mb-1">
-                    Craig send you a message
-                  </p>
+                  <p className="preview-subject ellipsis mb-1">Coming soon</p>
                   <p className="text-muted mb-0"> 15 Minutes ago </p>
                 </div>
               </Dropdown.Item>
@@ -181,7 +114,7 @@ const Navbar = () => {
                 </div>
                 <div className="preview-item-content">
                   <p className="preview-subject ellipsis mb-1">
-                    Profile picture updated
+                    budget goal message
                   </p>
                   <p className="text-muted mb-0"> 18 Minutes ago </p>
                 </div>
@@ -213,7 +146,7 @@ const Navbar = () => {
                 <div className="preview-item-content">
                   <p className="preview-subject mb-1">Event today</p>
                   <p className="text-muted ellipsis mb-0">
-                    Just a reminder that you have an event today
+                    Just a reminder to set a new budget
                   </p>
                 </div>
               </Dropdown.Item>
