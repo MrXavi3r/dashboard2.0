@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Col, Row, ProgressBar, Nav } from "react-bootstrap";
 
-const balanceGoalPercentage = 10;
-const incomeGoalPercentage = 40;
-const spendingGoalPercentage = 74;
+const balanceGoalPercentage = 40;
+const incomeGoalPercentage = 100;
+const spendingGoalPercentage = 84;
 
 const Goals = () => {
   const [balanceVariantColor, setBalanceVariantColor] = useState("primary");
@@ -16,21 +16,21 @@ const Goals = () => {
       setIncomeVariantColor("danger");
     } else if (type === "balance" && num < 33) {
       setBalanceVariantColor("danger");
-    } else if (type == "income" && num > 33 && num < 66) {
+    } else if (type === "income" && num > 33 && num < 66) {
       setBalanceVariantColor("warning");
-    } else if (type == "income" && num > 66 && num < 99) {
+    } else if (type === "income" && num > 66 && num < 99) {
       setIncomeVariantColor("primary");
-    } else if (type == "income" && num > 99) {
+    } else if (type === "income" && num > 99) {
       setIncomeVariantColor("success");
-    } else if (type == "spending" && num < 33) {
+    } else if (type === "spending" && num < 33) {
       setSpendingVariantColor("success");
-    } else if (type == "spending" && num > 33 && num < 75) {
+    } else if (type === "spending" && num > 33 && num < 75) {
       setSpendingVariantColor("warning");
-    } else if (type == "spending" && num > 75) {
+    } else if (type === "spending" && num > 75) {
       setSpendingVariantColor("danger");
-    } else if (type == "balance" && num > 33 && num < 66) {
+    } else if (type === "balance" && num > 33 && num < 66) {
       setBalanceVariantColor("warning");
-    } else if (type == "balance" && num > 66 && num < 99) {
+    } else if (type === "balance" && num > 66 && num < 99) {
       setBalanceVariantColor("primary");
     } else {
       setBalanceVariantColor("success");
@@ -48,8 +48,8 @@ const Goals = () => {
   }, []);
 
   return (
-    <Container fluid>
-      <Row className="grid-margin">
+    <Container>
+      <Row className="grid-margin" md={10} lg={12}>
         <Col>
           <Card className="bg-white">
             <Card.Header>
@@ -74,11 +74,9 @@ const Goals = () => {
             </Card.Header>
             <Card.Body>
               <Card
-                className={
-                  activeKey === "overview" ? "bg-white border" : "d-none"
-                }
+                className={activeKey === "overview" ? "bg-white" : "d-none"}
               >
-                <Card.Body className="">
+                <Card.Header className="">
                   <Card className="d-flex bg-light text-dark flex-row align-center justify-center grid-margin border-0">
                     <div className="w-25 my-auto">
                       <h3>Balance</h3>
@@ -118,7 +116,25 @@ const Goals = () => {
                       />
                     </div>
                   </Card>
-                </Card.Body>
+                </Card.Header>
+                <Card.Body className=""></Card.Body>
+              </Card>
+              <Card className={activeKey === "balance" ? "bg-white" : "d-none"}>
+                <div className="text-dark">
+                  <h1>Balance</h1>
+                </div>
+              </Card>
+              <Card
+                className={activeKey === "spending" ? "bg-white" : "d-none"}
+              >
+                <div className="text-dark">
+                  <h1>Spending</h1>
+                </div>
+              </Card>
+              <Card className={activeKey === "income" ? "bg-white" : "d-none"}>
+                <div className="text-dark">
+                  <h1>Income</h1>
+                </div>
               </Card>
             </Card.Body>
           </Card>

@@ -7,7 +7,7 @@ export const MarketWatchWidget = () => {
   const { getData, marketData } = useContext(MarketDataContext);
 
   useEffect(() => {
-    getData();
+      getData();
   }, []);
 
   useEffect(() => {

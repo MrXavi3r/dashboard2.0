@@ -1,28 +1,18 @@
 const axios = require("axios");
 
-//FETCH DATA FROM NEWS API EVERY 20 MINUTES
-//RESPONSES ARE CACHED
-//ONLY CACHED RESPONSES WILL BE SENT TO CLIENT IN ORDER TO CONTROL API RATE LIMITS
-
-let cached = [];
+// FETCH FROM NEWS API
 const fetchNews = async () => {
   const newsApiKey = process.env.NEWS_KEY;
   const newsUrl =
     "https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=3";
   const response = await axios.get(`${newsUrl}&apiKey=${newsApiKey}`);
   let data = response.data.articles;
-  cached = data;
+  return data;
 };
 
-//RUN FUNCTION ON INIT TO IMMEDIATELY GET ARTICLES
-setTimeout(() => fetchNews(), 0);
-
-//INITIATES THE INTERVAL FOR FETCHING NEWS
-setInterval(async () => fetchNews(), 1200000);
-//GETS DATA FROM CACHE AND SENDS TO CLIENT ON DEMAND
 exports.getNews = async (req, res, next) => {
   try {
-    res.status(200).send(cached);
+    res.status(200).send(await fetchNews());
   } catch (error) {
     res.status(500).json({ success: false, error: "Server Error" });
   }
