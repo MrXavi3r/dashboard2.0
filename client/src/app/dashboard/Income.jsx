@@ -30,8 +30,8 @@ export const Income = () => {
             <h6 className="mb-4">
               Income <small>(month to date)</small>
             </h6>
-            <div className="icon icon-box-success ">
-              <span className="mdi mdi-arrow-top-right icon-item"></span>
+            <div className="icon icon-box-danger ">
+              <span className="mdi mdi-arrow-bottom-left icon-item"></span>
             </div>
           </div>
           <div className="row d-flex align-items-center">
@@ -40,7 +40,7 @@ export const Income = () => {
             </div>
 
             <div className="col-3 text-right">
-              <p className="mb-0">50%</p>
+              <p className="mb-0">50% goal</p>
             </div>
           </div>
           <div className="progress" style={{ height: "7px" }}>

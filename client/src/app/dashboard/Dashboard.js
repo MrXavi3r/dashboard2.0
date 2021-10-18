@@ -34,10 +34,10 @@ export const Dashboard = () => {
         <NewsWidget />
       </div>
       <div className="row">
-        <Suggestions />
         <SliderWidget />
-        <TodoListComponent />
+        <Suggestions />
       </div>
+      <TodoListComponent />
     </div>
   );
 };

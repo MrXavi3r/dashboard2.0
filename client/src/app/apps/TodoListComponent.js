@@ -49,7 +49,7 @@ const TodoListComponent = () => {
             <input
               type="text"
               className="form-control h-auto"
-              placeholder="What do you need to do today?"
+              placeholder="What do you need to do?"
               value={inputValue}
               onChange={inputChangeHandler}
               required

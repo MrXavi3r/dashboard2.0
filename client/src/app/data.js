@@ -106,7 +106,7 @@ export const suggestionsData = [
   {
     id: 17698,
     title: "Cut down on your entertainment expenditure",
-    desc: "Models suggest if you reduce your entertainment expenditure by 20% you would reach your balance goal with 11 days to spare.",
+    desc: "Models suggest if you reduce your entertainment expenditure by 20% you would reach your monthly savings goal with 11 days to spare.",
     icon: "currency-usd-off",
     bgc: "danger",
   },

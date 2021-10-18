@@ -7,11 +7,11 @@ const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
 const AddTransaction = lazy(() => import("./transactions/AddTransaction"));
 const TransactionList = lazy(() => import("./transactions/TransactionList"));
-const Typography = lazy(() => import("./transactions/Typography"));
+// const Typography = lazy(() => import("./transactions/Typography"));
 
 const MarketWatch = lazy(() => import("./market-watch/manageSymbols"));
 
-const News = lazy(() => import("./news/BasicTable"));
+const News = lazy(() => import("./news/NewsData"));
 
 const Goals = lazy(() => import("./goals/Goals"));
 
@@ -34,11 +34,11 @@ const AppRoutes = () => {
           path="/transactions/TransactionList"
           component={TransactionList}
         />
-        <Route path="/transactions/typography" component={Typography} />
+        {/* <Route path="/transactions/typography" component={Typography} /> */}
 
         <Route path="/market-watch/manageSymbols" component={MarketWatch} />
 
-        <Route path="/news/basic-table" component={News} />
+        <Route path="/news/NewsData" component={News} />
 
         <Route path="/goals/Goals" component={Goals} />
 

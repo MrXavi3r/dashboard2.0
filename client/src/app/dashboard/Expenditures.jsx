@@ -30,7 +30,7 @@ export const Expenditures = () => {
             <h6 className="mb-4">
               Expenditures <small>(month to date)</small>
             </h6>
-            <div className="icon icon-box-success ">
+            <div className="icon icon-box-danger ">
               <span className="mdi mdi-arrow-top-right icon-item"></span>
             </div>
           </div>
@@ -40,15 +40,15 @@ export const Expenditures = () => {
             </div>
 
             <div className="col-3 text-right">
-              <p className="mb-0">36%</p>
+              <p className="mb-0">77% cap</p>
             </div>
           </div>
           <div className="progress" style={{ height: "7px" }}>
             <div
               className="progress-bar bg-danger"
               role="progressbar"
-              style={{ width: "35%" }}
-              aria-valuenow="35"
+              style={{ width: "77%" }}
+              aria-valuenow="77"
               aria-valuemin="0"
               aria-valuemax="100"
             />

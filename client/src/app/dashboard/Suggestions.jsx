@@ -5,7 +5,7 @@ export const Suggestions = () => {
   const [showSuggestions, setShowSuggestions] = useState(true);
 
   return (
-    <div className="col-md-6 col-xl-4 grid-margin stretch-card">
+    <div className="col-md-6 col-xl-6 px-2 grid-margin stretch-card">
       <div className="card bg-light text-dark">
         <div className="card-body">
           <div className="d-flex flex-row justify-content-between">

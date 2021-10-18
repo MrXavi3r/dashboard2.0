@@ -31,7 +31,7 @@ export const Balance = () => {
             </div>
 
             <div className="col-3 text-right">
-              <p className="mb-0">80%</p>
+              <p className="mb-0">80% goal</p>
             </div>
           </div>
 

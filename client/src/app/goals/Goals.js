@@ -48,9 +48,9 @@ const Goals = () => {
   }, []);
 
   return (
-    <Container>
-      <Row className="grid-margin" md={10} lg={12}>
-        <Col>
+    <Container className="p-0">
+      <Row className="grid-margin">
+        <Col className="p-0">
           <Card className="bg-white">
             <Card.Header>
               <Nav

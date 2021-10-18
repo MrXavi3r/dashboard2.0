@@ -75,13 +75,14 @@ class Sidebar extends Component {
       <nav className="sidebar sidebar-offcanvas bg-info" id="sidebar">
         <div className="sidebar-brand-wrapper d-none bg-info d-lg-flex align-items-center justify-content-center fixed-top">
           <Link className="sidebar-brand brand-logo" to="/dashboard">
-            <img src={require("../../assets/images/logo.svg")} alt="logo" />
+            <img
+              src={require("../../assets/images/dashboard2.svg")}
+              alt="logo"
+              className="img-fluid bg-info"
+            />
           </Link>
           <a className="sidebar-brand brand-logo-mini" href="/dashboard">
-            <img
-              src={require("../../assets/images/logo-mini.svg")}
-              alt="logo"
-            />
+            <img src={require("../../assets/images/miniD.svg")} alt="logo" />
           </a>
         </div>
         <ul className="nav position-fixed">
@@ -174,7 +175,7 @@ class Sidebar extends Component {
               <span className="menu-icon bg-dark">
                 <i className="mdi mdi-speedometer"></i>
               </span>
-              <span className="menu-title text-light">Dashboard</span>
+              <span className="menu-title text-light">Overview</span>
             </Link>
           </li>
           <li
@@ -228,7 +229,7 @@ class Sidebar extends Component {
                       Transaction List
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     {" "}
                     <Link
                       className={
@@ -240,7 +241,7 @@ class Sidebar extends Component {
                     >
                       Typography
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </Collapse>
@@ -295,9 +296,7 @@ class Sidebar extends Component {
           >
             <div
               className={
-                this.state.newsMenuOpen
-                  ? "nav-link menu-expanded"
-                  : "nav-link"
+                this.state.newsMenuOpen ? "nav-link menu-expanded" : "nav-link"
               }
               onClick={() => this.toggleMenuState("newsMenuOpen")}
               data-toggle="collapse"
@@ -315,13 +314,13 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/news/basic-table")
+                        this.isPathActive("/news/NewsData")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/news/basic-table"
+                      to="/news/NewsData"
                     >
-                      Basic Table
+                      News Data
                     </Link>
                   </li>
                 </ul>
