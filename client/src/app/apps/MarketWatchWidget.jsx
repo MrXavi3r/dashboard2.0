@@ -7,14 +7,14 @@ export const MarketWatchWidget = () => {
   const { getData, marketData } = useContext(MarketDataContext);
 
   useEffect(() => {
-      getData();
+    getData();
   }, []);
 
   useEffect(() => {
     marketData.length
       ? setWidgetStatusColor("success")
       : setWidgetStatusColor("gray");
-  }, []);
+  }, [marketData]);
 
   return (
     <Col md={6} xl={4} className="grid-margin">

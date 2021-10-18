@@ -72,42 +72,63 @@ export const categories = [
 export const todoData = [
   {
     id: 1,
-    task: "Pick up kids from school",
+    task: "open investment account",
     isCompleted: false,
   },
   {
     id: 2,
-    task: "Prepare for presentation",
+    task: "apply for credit card",
     isCompleted: true,
   },
   {
     id: 3,
-    task: "Print Statements",
+    task: "consolidate credit card debt",
     isCompleted: false,
   },
   {
     id: 4,
-    task: "Create invoice",
-    isCompleted: false,
-  },
-  {
-    id: 5,
-    task: "Call John",
-    isCompleted: true,
-  },
-  {
-    id: 6,
-    task: "Meeting with Alisa",
+    task: "refinance mortgage",
     isCompleted: false,
   },
 ];
 
 export const events = [
-   {
+  {
     title: "birthday",
     start: "2021-10-19T00:00:00.000Z",
     end: "2021-10-19T00:01:00.000Z",
     allDay: false,
     resource: "any",
-  }
-]
+  },
+];
+
+export const suggestionsData = [
+  {
+    id: 17698,
+    title: "Cut down on your entertainment expenditure",
+    desc: "Models suggest if you reduce your entertainment expenditure by 20% you would reach your balance goal with 11 days to spare.",
+    icon: "currency-usd-off",
+    bgc: "danger",
+  },
+  {
+    id: 87091,
+    title: "You may benefit from a no interest balance transfer credit card",
+    desc: "Your monthly credit card payments may not be covering interest charges. Considering applying for a 0% interest credit card and transferring the balance to save money on any current charges.",
+    icon: "credit-card-scan",
+    bgc: "info",
+  },
+  {
+    id: 42365,
+    title: "An investment account may help you with your long term goal",
+    desc: "Consider speaking with a financial advisor about your plans to purchase a home and ways to effectively reach your goal.",
+    icon: "scale-balance",
+    bgc: "success",
+  },
+  {
+    id: 10939,
+    title: "Unusually high utility expenditure",
+    desc: "Your utility expenditures are 27% above the national average. Consider investigating ways in which to reduce your utility overhead.",
+    icon: "lightbulb-outline",
+    bgc: "warning",
+  },
+];

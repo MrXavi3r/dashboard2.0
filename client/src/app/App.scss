@@ -2,10 +2,8 @@
 
 /* === Plugin styles === */
 
-
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
-
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -20,7 +18,6 @@
 /* === Icon fonts === */
 @import "~@mdi/font/scss/materialdesignicons";
 
-
 /* === Template mixins === */
 @import "../assets/styles/mixins/animation";
 @import "../assets/styles/mixins/badges";
@@ -29,7 +26,6 @@
 @import "../assets/styles/mixins/color-functions";
 @import "../assets/styles/mixins/cards";
 @import "../assets/styles/mixins/blockqoute";
-
 
 /* === Core Styles === */
 @import "../assets/styles/typography";
@@ -68,29 +64,28 @@
 @import "../assets/styles/sidebar";
 @import "../assets/styles/footer";
 @import "../assets/styles/layout";
-@import '~react-big-calendar/lib/sass/styles';
-@import '~react-big-calendar/lib/addons/dragAndDrop/styles';
-
+@import "~react-big-calendar/lib/sass/styles";
+@import "~react-big-calendar/lib/addons/dragAndDrop/styles";
 
 // an override of templated plugin styles for table & hovers
 .table-hover {
-    tbody {
-        tr {
-            &:hover {
-                color: blue;
-                background-color: rgb(159, 166, 168);
-            }
-        }
+  tbody {
+    tr {
+      &:hover {
+        color: blue;
+        background-color: rgb(159, 166, 168);
+      }
     }
+  }
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #7c83da;
+  background-color: #7c83da;
 }
 
 // add transaction form info hide on mobile devices
-.add-trans-info{
-    @media screen and (max-width: 768px){
-        display:none;
-    }
+.add-trans-info {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }

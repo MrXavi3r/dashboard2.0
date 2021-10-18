@@ -7,13 +7,13 @@ import { Transactions } from "./Transactions";
 import { MarketWatchWidget } from "../apps/MarketWatchWidget";
 import { NewsWidget } from "../apps/NewsWidget";
 import { PieWidget } from "./PieWidget";
-import { Messages } from "./Messages";
+import { Suggestions } from "./Suggestions";
 import { SliderWidget } from "../apps/SliderWidget";
 import { TransactionsContext } from "../../context/TransactionsState";
 
 export const Dashboard = () => {
   const { getTransactions } = useContext(TransactionsContext);
-  
+
   useEffect(() => {
     getTransactions();
   }, []);
@@ -34,7 +34,7 @@ export const Dashboard = () => {
         <NewsWidget />
       </div>
       <div className="row">
-        <Messages />
+        <Suggestions />
         <SliderWidget />
         <TodoListComponent />
       </div>

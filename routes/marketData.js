@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const cached = require("../cache");
+const cached = require("./caching/cache");
 
 const {
   getData,
