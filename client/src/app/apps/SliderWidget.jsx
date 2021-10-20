@@ -13,7 +13,7 @@ export const SliderWidget = () => {
 
   return (
     <div className="col-md-6 col-xl-4 grid-margin stretch-card">
-      <div className="card bg-light text-dark">
+      <div className="card bg-light text-dark shadow">
         <div className="card-body">
           <h4 className="card-title text-dark">Ads from ...</h4>
           <Slider className="portfolio-slider" {...sliderSettings}>

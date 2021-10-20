@@ -5,7 +5,7 @@ const Transaction = require("../models/Transactions");
 // @access   Public
 exports.getTransactions = async (req, res, next) => {
   try {
-    const transactions = await Transaction.find();
+    const transactions = await Transaction.find().sort({ date: -1 });
 
     return res.status(200).json({
       success: true,
@@ -33,7 +33,6 @@ exports.addTransaction = async (req, res, next) => {
       success: true,
       data: transaction,
     });
-    
   } catch (error) {
     if (error.name === "ValidationError") {
       const messages = Object.values(error.errors).map((val) => val.message);
@@ -43,7 +42,7 @@ exports.addTransaction = async (req, res, next) => {
         error: messages,
       });
     } else {
-      console.log(error)
+      console.log(error);
       return res.status(500).json({
         success: false,
         error: "Server Error",

@@ -24,7 +24,7 @@ export const Income = () => {
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">
-      <Card className="bg-light text-dark rounded-3">
+      <Card className="bg-light text-dark rounded-3 shadow">
         <Card.Body>
           <div className="d-flex align-items-center justify-content-between">
             <h6 className="mb-4">

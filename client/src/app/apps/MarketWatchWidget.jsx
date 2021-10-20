@@ -18,7 +18,7 @@ export const MarketWatchWidget = () => {
 
   return (
     <Col md={6} xl={4} className="grid-margin">
-      <Card className="bg-light text-dark">
+      <Card className="bg-light text-dark shadow">
         <Card.Header className="bg-primary d-flex align-items-center justify-content-between">
           <Card.Title as="h4" className="text-white mb-0">
             <i className="mdi mdi-chart-timeline-variant pr-2 text-success mdi-24px">
@@ -35,7 +35,7 @@ export const MarketWatchWidget = () => {
                 return (
                   <li
                     key={index}
-                    className="d-flex align-items-center justify-content-between border border-0 border-dark border-bottom-1 my-2"
+                    className="d-flex align-items-center justify-content-between border border-0 my-2 p-2 rounded shadow"
                   >
                     <div className="d-flex flex-column">
                       <h5 className="mb-0 text-uppercase"> {ticker.symbol} </h5>

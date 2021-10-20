@@ -21,34 +21,26 @@ const TransactionList = () => {
 
   return (
     <Col sm={10} md={10} lg={12} xl={12} className="mx-auto">
-      <Card className="bg-light">
+      <Card className="bg-light shadow">
         <Card.Header className="bg-primary">
           <Card.Title as="h4" className="text-light mb-0 p-2">
             Transactions List
           </Card.Title>
         </Card.Header>
         <Card.Body>
-          <Table striped responsive borderless className="text-dark">
+          <Table responsive borderless className="text-dark">
             <thead>
               <tr>
-                <th scope="col">
-                  Name
-                </th>
-                <th scope="col">
-                  Date
-                </th>
-                <th scope="col">
-                  Category
-                </th>
-                <th scope="col">
-                  Amount
-                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
               </tr>
             </thead>
             <tbody>
               {transactions.map((transaction) => {
                 return (
-                  <tr key={transaction._id}>
+                  <tr key={transaction._id} className="shadow">
                     <td className="text-capitalize">
                       {transaction.text.substring(0, 20)}
                     </td>
@@ -58,9 +50,7 @@ const TransactionList = () => {
                     <td className="text-capitalize">{transaction.category}</td>
                     <td
                       className={
-                        transaction.amount > 0
-                          ? "text-success"
-                          : "text-danger"
+                        transaction.amount > 0 ? "text-success" : "text-danger"
                       }
                     >
                       {transaction.amount.toLocaleString("en-us")}

@@ -63,9 +63,18 @@ const AddTransaction = () => {
           <Formik
             validationSchema={schema}
             initialValues={formData.data}
-            onSubmit={(values) => {
-              console.log(values);
-              addTransaction(values)
+            onSubmit={(values, actions) => {
+              addTransaction(values).then(() => {
+                actions.setSubmitting(false);
+                actions.resetForm({
+                  values: {
+                    text: "",
+                    amount: 0,
+                    date: "",
+                    category: "",
+                  },
+                });
+              });
             }}
           >
             {({
@@ -74,15 +83,10 @@ const AddTransaction = () => {
               values,
               handleBlur,
               touched,
-              handleReset,
               isValid,
               errors,
             }) => (
-              <Form
-                noValidate
-                onSubmit={handleSubmit}
-                className=""
-              >
+              <Form noValidate onSubmit={handleSubmit} className="">
                 <Form.Group as={Col} className="mt-1 mb-0">
                   <Form.Label className="text-dark">Text</Form.Label>
                   <Form.Control

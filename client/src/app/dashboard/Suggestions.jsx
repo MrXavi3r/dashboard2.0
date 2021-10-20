@@ -6,7 +6,7 @@ export const Suggestions = () => {
 
   return (
     <div className="col-md-6 col-xl-6 px-2 grid-margin stretch-card">
-      <div className="card bg-light text-dark">
+      <div className="card bg-light text-dark shadow">
         <div className="card-body">
           <div className="d-flex flex-row justify-content-between">
             <h4 className="card-title text-dark">Suggestions</h4>

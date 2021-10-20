@@ -8,7 +8,7 @@ const stringifyTickerData = async () => {
     const response = await Ticker.find();
     return response.map((symbol) => symbol.ticker).join();
   } catch (error) {
-    console.log(error, "stringify did not run");
+    throw new Error('stringify tickers failed');
   }
 };
 

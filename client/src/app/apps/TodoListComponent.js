@@ -41,8 +41,8 @@ const TodoListComponent = () => {
   };
 
   return (
-    <div className="col-md-12 col-xl-4 grid-margin stretch-card">
-      <div className="card bg-light text-dark">
+    <div className="col-md-12 col-xl-4 grid-margin stretch-card p-0">
+      <div className="card bg-light text-dark shadow">
         <div className="card-body">
           <h4 className="card-title text-dark">To do list</h4>
           <form className="add-items d-flex" onSubmit={addTodo}>

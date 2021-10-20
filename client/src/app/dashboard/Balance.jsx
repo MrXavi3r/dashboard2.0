@@ -17,7 +17,7 @@ export const Balance = () => {
 
   return (
     <Col xl={4} className="grid-margin">
-      <Card className="bg-light text-dark border-gray rounded-3">
+      <Card className="bg-light text-dark border-gray rounded-3 shadow">
         <Card.Body>
           <div className="d-flex align-items-center justify-content-between">
             <h4 className="mb-4">Balance</h4>
