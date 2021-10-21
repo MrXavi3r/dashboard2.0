@@ -54,7 +54,7 @@ const ManageSymbols = () => {
             <Card.Body className="mx-auto">
               <ul>
                 <li>Add symbols for the MarketWatch widget to track</li>
-                <li>Up to 5 symbols may be stored at a time</li>
+                <li>Select the proper category for each symbol</li>
                 <li>Delete symbols as needed in the list above</li>
               </ul>
               <Form onSubmit={() => addTicker(tickerString)}>

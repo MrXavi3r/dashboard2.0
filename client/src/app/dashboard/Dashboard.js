@@ -5,6 +5,7 @@ import { Income } from "./Income";
 import { Expenditures } from "./Expenditures";
 import { Transactions } from "./Transactions";
 import { MarketWatchWidget } from "../apps/MarketWatchWidget";
+import TradingView from "../apps/TradingView";
 import { NewsWidget } from "../apps/NewsWidget";
 import { PieWidget } from "./PieWidget";
 import { Suggestions } from "./Suggestions";
@@ -30,7 +31,8 @@ export const Dashboard = () => {
         <Transactions />
       </div>
       <div className="row ">
-        <MarketWatchWidget />
+        {/* <MarketWatchWidget /> */}
+        <TradingView />
         <NewsWidget />
       </div>
       <div className="row">

@@ -4,7 +4,7 @@ const axios = require("axios");
 const fetchNews = async () => {
   const newsApiKey = process.env.NEWS_KEY;
   const newsUrl =
-    "https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=3";
+    "https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=5";
   const response = await axios.get(`${newsUrl}&apiKey=${newsApiKey}`);
   let data = response.data.articles;
   return data;

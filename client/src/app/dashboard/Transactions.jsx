@@ -35,7 +35,7 @@ export const Transactions = () => {
               </tr>
             </thead>
             <tbody>
-              {transactions.slice(0, 6).map((transaction) => {
+              {transactions.slice(0, 7).map((transaction) => {
                 return (
                   <tr key={transaction._id} className="shadow">
                     <td className="text-capitalize">

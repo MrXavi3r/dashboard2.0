@@ -16,7 +16,7 @@ export const NewsWidget = () => {
   }, []);
 
   return (
-    <Col md={6} xl={8} className="grid-margin">
+    <Col md={12} xl={8} className="grid-margin">
       <Card className="bg-light text-dark shadow">
         <Card.Header className="bg-danger d-flex align-items-center justify-content-between">
           <Card.Title as="h4" className="mb-0 p-0 text-white text-center">

@@ -28,7 +28,7 @@ export const MarketWatchWidget = () => {
           </Card.Title>
           <i className={`fa fa-circle text-${widgetStatusColor} fa-lg`} />
         </Card.Header>
-        <Card.Body className="pb-0">
+        <Card.Body className="">
           <ul>
             {marketData && marketData.length ? (
               marketData.map((ticker, index) => {
