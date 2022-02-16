@@ -197,7 +197,7 @@ class Sidebar extends Component {
               <span className="menu-icon bg-dark">
                 <i className="mdi mdi-swap-horizontal"></i>
               </span>
-              <span className="menu-title text-light">Transactions</span>
+              <span className="menu-title text-light">Accounts</span>
               <i className="menu-arrow"></i>
             </div>
             <Collapse in={this.state.transactionsMenuOpen}>
@@ -207,11 +207,24 @@ class Sidebar extends Component {
                     {" "}
                     <Link
                       className={
-                        this.isPathActive("/transactions/AddTransaction")
+                        this.isPathActive("/transactions/linked-accounts")
                           ? "nav-link active"
                           : "nav-link"
                       }
-                      to="/transactions/AddTransaction"
+                      to="/transactions/linked-accounts"
+                    >
+                      Linked Accounts
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      className={
+                        this.isPathActive("/transactions/add-transaction")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                      to="/transactions/add-transaction"
                     >
                       Add Transaction
                     </Link>

@@ -33,7 +33,7 @@ const TradingView = () => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span class="blue-text"></span>
+                <span className="blue-text"></span>
               </a>{" "}
               Courtesy: TradingView
             </div>

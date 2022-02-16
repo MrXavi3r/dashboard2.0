@@ -23,7 +23,7 @@ export const Suggestions = () => {
                 return (
                   <ListGroup.Item
                     key={item.id}
-                    className={`d-flex align-items-center justify-content-center border border-${item.bgc} rounded my-2 shadow`}
+                    className={`d-flex align-items-center justify-content-center border border-${item.bgc} rounded my-2`}
                   >
                     <div className="w-25 d-flex align-items-center justify-content-center">
                       <span className="w-75 d-flex d-flex align-items-center justify-content-center">

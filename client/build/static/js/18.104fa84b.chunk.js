@@ -1,2 +1,0 @@
-(this.webpackJsonpdashboard=this.webpackJsonpdashboard||[]).push([[18],{380:function(a,e,s){"use strict";s.r(e);var t=s(0),d=s.n(t);e.default=()=>d.a.createElement("div",null,d.a.createElement("div",{className:"page-header"}))}}]);
-//# sourceMappingURL=18.104fa84b.chunk.js.map

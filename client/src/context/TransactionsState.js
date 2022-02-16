@@ -13,8 +13,7 @@ export const TransactionsContext = createContext(initialState);
 export const TransactionsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(TransactionsReducer, initialState);
 
-
-//GET TRANSACTION FROM TRANSACTIONS API
+  //GET TRANSACTION FROM TRANSACTIONS API
   async function getTransactions() {
     try {
       const res = await axios.get("/api/v1/transactions");
@@ -57,7 +56,11 @@ export const TransactionsProvider = ({ children }) => {
     };
 
     try {
-      const res = axios.post(`/api/v1/transactions/`, transaction, config);
+      const res = await axios.post(
+        `/api/v1/transactions/`,
+        transaction,
+        config
+      );
 
       dispatch({
         type: "ADD_TRANSACTION",

@@ -5,6 +5,7 @@ import Spinner from "../app/shared/Spinner";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
+const LinkedAccounts = lazy(() => import("./transactions/LinkedAccounts"));
 const AddTransaction = lazy(() => import("./transactions/AddTransaction"));
 const TransactionList = lazy(() => import("./transactions/TransactionList"));
 // const Typography = lazy(() => import("./transactions/Typography"));
@@ -29,7 +30,8 @@ const AppRoutes = () => {
       <Switch>
         <Route exact path="/dashboard" component={Dashboard} />
 
-        <Route path="/transactions/AddTransaction" component={AddTransaction} />
+        <Route path="/transactions/linked-accounts" component={LinkedAccounts} />
+        <Route path="/transactions/add-transaction" component={AddTransaction} />
         <Route
           path="/transactions/TransactionList"
           component={TransactionList}
