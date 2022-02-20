@@ -4,7 +4,7 @@ export default (state, action) => {
       return {
         ...state,
         loading: false,
-        goals: action.payload,
+        goals: action.payload.goals,
       };
     case "UPDATE_GOAL":
       return {

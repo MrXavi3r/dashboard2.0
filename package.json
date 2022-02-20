@@ -29,7 +29,8 @@
     "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
     "node-fetch": "^3.0.0",
-    "plaid": "^9.10.0"
+    "plaid": "^9.10.0",
+    "react-plaid-link": "file:plaid/react-plaid-link"
   },
   "devDependencies": {
     "colors": "^1.4.0",

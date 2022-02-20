@@ -1,26 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Col, Card } from "react-bootstrap";
 import { TransactionsContext } from "../../context/TransactionsState";
+import { GoalsContext } from "../../context/GoalsState";
 // import { transactions } from "../data";
 
 export const Income = () => {
-  const [income, setIncome] = useState(0);
-  const { transactions } = useContext(TransactionsContext);
-
-  useEffect(() => {
-    let data = [];
-
-    transactions.forEach((transaction) => {
-      if (transaction.amount > 0) {
-        data.push(transaction.amount);
-      }
-    });
-
-    let total = data.reduce((acc, curr) => {
-      return acc + curr;
-    }, 0);
-    setIncome(total.toLocaleString("en-us"));
-  }, [transactions]);
+  const { income } = useContext(TransactionsContext);
+  const { goals } = useContext(GoalsContext);
+  const goalMeter = Math.round((income / goals.income) * 100);
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">
@@ -36,19 +23,21 @@ export const Income = () => {
           </div>
           <div className="row d-flex align-items-center">
             <div className="col-9">
-              <h3 className="d-flex align-items-center">${income}</h3>
+              <h3 className="d-flex align-items-center text-success">
+                ${income.toLocaleString("en-us")}
+              </h3>
             </div>
 
             <div className="col-3 text-right">
-              <p className="mb-0">50% goal</p>
+              <p className="mb-0">{goalMeter}% goal</p>
             </div>
           </div>
           <div className="progress" style={{ height: "7px" }}>
             <div
               className="progress-bar bg-warning"
               role="progressbar"
-              style={{ width: "50%" }}
-              aria-valuenow="50"
+              style={{ width: `${goalMeter}%` }}
+              aria-valuenow={goalMeter}
               aria-valuemin="0"
               aria-valuemax="100"
             />

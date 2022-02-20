@@ -9,13 +9,13 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <BrowserRouter basename="/Dashboard">
-    <GoalsProvider>
-      <MarketDataProvider>
-        <TransactionsProvider>
+    <MarketDataProvider>
+      <TransactionsProvider>
+        <GoalsProvider>
           <App />
-        </TransactionsProvider>
-      </MarketDataProvider>
-    </GoalsProvider>
+        </GoalsProvider>
+      </TransactionsProvider>
+    </MarketDataProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

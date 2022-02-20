@@ -1,26 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Col, Card } from "react-bootstrap";
 import { TransactionsContext } from "../../context/TransactionsState";
+import { GoalsContext } from "../../context/GoalsState";
 // import { transactions } from "../data";
 
 export const Expenditures = () => {
-  const [expenses, setExpenses] = useState(0);
-  const { transactions } = useContext(TransactionsContext);
-
-  useEffect(() => {
-    let data = [];
-
-    transactions.forEach((transaction) => {
-      if (transaction.amount < 0) {
-        data.push(transaction.amount);
-      }
-    });
-
-    let total = data.reduce((acc, curr) => {
-      return acc + curr;
-    }, 0);
-    setExpenses(total.toLocaleString("en-us"));
-  }, [transactions]);
+  const { spending } = useContext(TransactionsContext);
+  const { goals } = useContext(GoalsContext);
+  const goalMeter = Math.round((Math.abs(spending) / goals.spending) * 100);
 
   return (
     <Col md={6} xl={4} sm={6} className="grid-margin">
@@ -36,19 +23,21 @@ export const Expenditures = () => {
           </div>
           <div className="row d-flex align-items-center">
             <div className="col-9">
-              <h3 className="d-flex align-items-center m-b-0">${expenses}</h3>
+              <h3 className="d-flex align-items-center m-b-0 text-danger">
+                ${spending.toLocaleString("en-us")}
+              </h3>
             </div>
 
             <div className="col-3 text-right">
-              <p className="mb-0">77% cap</p>
+              <p className="mb-0">{goalMeter}% cap</p>
             </div>
           </div>
           <div className="progress" style={{ height: "7px" }}>
             <div
               className="progress-bar bg-danger"
               role="progressbar"
-              style={{ width: "77%" }}
-              aria-valuenow="77"
+              style={{ width: `${goalMeter}%` }}
+              aria-valuenow={goalMeter}
               aria-valuemin="0"
               aria-valuemax="100"
             />

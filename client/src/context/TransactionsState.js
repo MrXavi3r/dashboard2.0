@@ -6,6 +6,9 @@ const initialState = {
   transactions: [],
   error: null,
   loading: true,
+  balance: 0,
+  income: 0,
+  spending: 0,
 };
 
 export const TransactionsContext = createContext(initialState);
@@ -13,7 +16,7 @@ export const TransactionsContext = createContext(initialState);
 export const TransactionsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(TransactionsReducer, initialState);
 
-  //GET TRANSACTION FROM TRANSACTIONS API
+  //GET TRANSACTIONS && BALANCES FROM TRANSACTIONS API
   async function getTransactions() {
     try {
       const res = await axios.get("/api/v1/transactions");
@@ -80,6 +83,9 @@ export const TransactionsProvider = ({ children }) => {
         transactions: state.transactions,
         error: state.error,
         loading: state.loading,
+        balance: state.balance,
+        income: state.income,
+        spending: state.spending,
         addTransaction,
         deleteTransaction,
         getTransactions,

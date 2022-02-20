@@ -10,20 +10,24 @@ import {
   Button,
 } from "react-bootstrap";
 import { GoalsContext } from "../../context/GoalsState";
-
-const balanceGoalPercentage = 40;
-const incomeGoalPercentage = 100;
-const spendingGoalPercentage = 84;
+import { TransactionsContext } from "../../context/TransactionsState";
 
 const Goals = () => {
   const { goals, getGoals, updateGoal } = useContext(GoalsContext);
-  const [balance, setBalance] = useState(0);
-  const [income, setIncome] = useState(0);
-  const [spending, setSpending] = useState(0);
+  const { balance, income, spending, getTransactions } = useContext(TransactionsContext);
+  const [balanceInput, setBalanceInput] = useState(0);
+  const [incomeInput, setIncomeInput] = useState(0);
+  const [spendingInput, setSpendingInput] = useState(0);
   const [balanceVariantColor, setBalanceVariantColor] = useState("primary");
   const [incomeVariantColor, setIncomeVariantColor] = useState("primary");
   const [spendingVariantColor, setSpendingVariantColor] = useState("primary");
   const [activeKey, setActiveKey] = useState("overview");
+
+  const balanceGoalMeter = Math.round((balance / goals.balance) * 100);
+  const incomeGoalMeter = Math.round((income / goals.income) * 100);
+  const spendingGoalMeter = Math.round(
+    (Math.abs(spending) / goals.spending) * 100
+  );
 
   const colorSelect = (num, type) => {
     if (type === "income" && num < 33) {
@@ -56,16 +60,15 @@ const Goals = () => {
   };
 
   useEffect(() => {
-    colorSelect(spendingGoalPercentage, "spending");
-    colorSelect(incomeGoalPercentage, "income");
-    colorSelect(balanceGoalPercentage, "balance");
+    colorSelect(spendingGoalMeter, "spending");
+    colorSelect(incomeGoalMeter, "income");
+    colorSelect(balanceGoalMeter, "balance");
   }, []);
 
   useEffect(() => {
+    getTransactions();
     getGoals();
   }, []);
-
-  console.log(goals._id);
 
   return (
     <Container className="p-0">
@@ -137,9 +140,9 @@ const Goals = () => {
                     <div className="w-75 my-auto">
                       <ProgressBar
                         variant={balanceVariantColor}
-                        now={balanceGoalPercentage}
-                        label={`${balanceGoalPercentage}%`}
-                        className="bg-light border border-dark"
+                        now={balanceGoalMeter}
+                        label={`${balanceGoalMeter}%`}
+                        className="bg-dark border border-dark"
                       />
                     </div>
                   </Card>
@@ -150,9 +153,9 @@ const Goals = () => {
                     <div className="w-75 my-auto">
                       <ProgressBar
                         variant={spendingVariantColor}
-                        now={spendingGoalPercentage}
-                        label={`${spendingGoalPercentage}%`}
-                        className="bg-light border border-dark"
+                        now={spendingGoalMeter}
+                        label={`${spendingGoalMeter}%`}
+                        className="bg-dark border border-dark"
                       />
                     </div>
                   </Card>
@@ -163,9 +166,9 @@ const Goals = () => {
                     <div className="w-75 my-auto">
                       <ProgressBar
                         variant={incomeVariantColor}
-                        now={incomeGoalPercentage}
-                        label={`${incomeGoalPercentage}%`}
-                        className="bg-light border border-dark"
+                        now={incomeGoalMeter}
+                        label={`${incomeGoalMeter}%`}
+                        className="bg-dark border border-dark"
                       />
                     </div>
                   </Card>
@@ -179,17 +182,20 @@ const Goals = () => {
               >
                 <div className="text-dark">
                   <Form
-                    onSubmit={() => updateGoal(goals._id, { balance: balance })}
+                    onSubmit={() =>
+                      updateGoal(goals._id, { balance: balanceInput })
+                    }
                   >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>
-                        Current Setting: {goals ? goals.balance : 0}
+                        Current Goal: $
+                        {goals ? goals.balance?.toLocaleString("en-US") : 0}
                       </Form.Label>
                       <Form.Control
                         type="number"
                         className="bg-white w-25"
-                        value={balance}
-                        onChange={(e) => setBalance(e.target.value)}
+                        value={balanceInput}
+                        onChange={(e) => setBalanceInput(e.target.value)}
                       />
                       <Form.Text className="text-muted">
                         Enter to update your balance goal
@@ -209,18 +215,19 @@ const Goals = () => {
                 <div className="text-dark">
                   <Form
                     onSubmit={() =>
-                      updateGoal(goals._id, { spending: spending })
+                      updateGoal(goals._id, { spending: spendingInput })
                     }
                   >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>
-                        Current Setting: {goals ? goals.spending : 0}
+                        Current Goal: $
+                        {goals ? goals.spending?.toLocaleString("en-US") : 0}
                       </Form.Label>
                       <Form.Control
                         type="number"
                         className="bg-white w-25"
-                        value={spending}
-                        onChange={(e) => setSpending(e.target.value)}
+                        value={spendingInput}
+                        onChange={(e) => setSpendingInput(e.target.value)}
                       />
                       <Form.Text className="text-muted">
                         Enter to update your spending goal
@@ -239,17 +246,20 @@ const Goals = () => {
               >
                 <div className="text-dark">
                   <Form
-                    onSubmit={() => updateGoal(goals._id, { income: income })}
+                    onSubmit={() =>
+                      updateGoal(goals._id, { income: incomeInput })
+                    }
                   >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>
-                        Current Setting: {goals ? goals.income : 0}
+                        Current Goal: $
+                        {goals ? goals.income?.toLocaleString("en-US") : 0}
                       </Form.Label>
                       <Form.Control
                         type="number"
                         className="bg-white w-25"
-                        value={income}
-                        onChange={(e) => setIncome(e.target.value)}
+                        value={incomeInput}
+                        onChange={(e) => setIncomeInput(e.target.value)}
                       />
                       <Form.Text className="text-muted">
                         Enter to update your income goal

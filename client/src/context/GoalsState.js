@@ -1,6 +1,7 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useContext } from "react";
 import GoalsReducer from "./GoalsReducer";
 import axios from "axios";
+import { TransactionsContext } from "./TransactionsState";
 
 const initialState = {
   goals: {},
@@ -16,11 +17,15 @@ export const GoalsProvider = ({ children }) => {
   //GET GOALS FROM GOALS ENDPOINT
   async function getGoals() {
     try {
-      const res = await axios.get("/api/v1/goals");
+      const goalData = await axios.get("/api/v1/goals");
+
+      const goalsPayload = {
+        goals: goalData.data.data,
+      };
 
       dispatch({
         type: "GET_GOALS",
-        payload: res.data.data,
+        payload: goalsPayload,
       });
     } catch (error) {
       dispatch({
@@ -31,17 +36,10 @@ export const GoalsProvider = ({ children }) => {
   }
 
   //UPDATE A PROPERTY ON GOALS OBJECT
+  // goal = {property: value}
   async function updateGoal(id, goal) {
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
-    console.log(goal);
     try {
       const res = await axios.put(`/api/v1/goals/${id}`, goal);
-      console.log(res.data);
 
       dispatch({
         type: "UPDATE_GOAL",
