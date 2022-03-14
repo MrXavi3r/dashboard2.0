@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { PlaidLink } from "react-plaid-link";
 import { PlaidContext } from "../../context/PlaidState";
-// import axios from "axios";
 
 const Link = () => {
   const { publicToken, getAccessToken } = useContext(PlaidContext);

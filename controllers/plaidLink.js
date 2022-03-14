@@ -1,4 +1,3 @@
-const express = require("express");
 const plaid = require("plaid");
 const dotenv = require("dotenv");
 
@@ -34,9 +33,7 @@ exports.createLinkToken = async (req, res) => {
 };
 
 exports.getAccessToken = async (req, res) => {
-  console.log(req.body);
   try {
-    console.log(req.body);
     const { publicToken } = req.body;
     const response = await client
       .exchangePublicToken(publicToken)
@@ -45,7 +42,6 @@ exports.getAccessToken = async (req, res) => {
           return "no public token";
         }
       });
-    console.log("getaccess token response", response);
     const itemId = response.item_id;
     return res.send({ access_token: response.access_token });
   } catch (error) {
@@ -66,7 +62,6 @@ exports.getTransactions = async (req, res) => {
       }
     });
   const transactions = response.transactions;
-  console.log(transactions);
   return res.send({ transactions: transactions });
 };
 

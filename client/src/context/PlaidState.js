@@ -36,7 +36,6 @@ export const PlaidProvider = ({ children }) => {
     const res = await axios.post("/api/v1/plaid/get_access_token", {
       publicToken: token,
     });
-    console.log(res);
 
     try {
       dispatch({
@@ -56,7 +55,6 @@ export const PlaidProvider = ({ children }) => {
     const res = await axios.post("/api/v1/plaid/transactions", {
       accessToken: token,
     });
-    console.log(res);
 
     try {
       dispatch({

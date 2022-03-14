@@ -12,6 +12,5 @@ router.route("/create_link_token").post(createLinkToken);
 router.route("/get_access_token").post(getAccessToken);
 router.route("/transactions").post(getTransactions);
 router.route("/get_link_token").post(getLinkToken);
-// router.route("/transactions").get()
 
 module.exports = router;
